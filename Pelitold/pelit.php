@@ -1,24 +1,4 @@
-<!--<?php
-
-	
-	$kotisivunOsoite = "laksot.fi"; 
-	$kotisivunJuuri = $kotisivunOsoite."/";
-	
-	$haettuURL = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-
-	while (eregi("//", $haettuURL)) {
-		$haettuURL = str_replace("//", "/", $haettuURL);
-	}
-
-
-	$osoiteSuhteessaJuureen = str_replace($kotisivunJuuri, "", $haettuURL);
-	$kauttaviivat = substr_count($osoiteSuhteessaJuureen, "/");
-	$suhteellinenOsoite = str_repeat("./", $kauttaviivat);
-	$kavijatURL = $suhteellinenOsoite."kavijat/";
-
-	include($kavijatURL."laskuri.php");
-
-?>--><!DOCTYPE html
+<!DOCTYPE html
 PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -519,8 +499,6 @@ include "dbsulje.php";
 
 
 <div id="laskuri">
-<?php echo "Sivuillani on vierailtu: ";?><?php include($kavijatURL."kavijat.txt"); echo ' kertaa';?><br/>
-<?php echo 'Sivuja on ladattu: '?><?php include($kavijatURL."lataukset.txt"); ?><?php echo ' kertaa';?>
 <br/><br/>©ELakso 2010
 </div>
 </body>
