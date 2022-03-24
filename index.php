@@ -13,7 +13,7 @@ if ( $tunniste->rowCount() > 0 ){
     // Loop till there are no more rows
     while ( $row = $tunniste->fetch() ) {
         // Echo the data
-        echo "<li>" . $row["pelit_id"] . " " . $row["pelin_nimi"]. "</li>";
+        echo "<li>" . $row["valmistaja"] . " " . $row["malli"]. "</li>";
     }
     echo "</ul>";
     echo '<a class="btn btn-primary" href="person.php" role="button">Add person</a>';
