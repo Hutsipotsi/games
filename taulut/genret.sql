@@ -1,5 +1,4 @@
-| genret | 
-CREATE TABLE 'genret' (
-'id' int NOT NULL AUTO_INCREMENT,
-'tyylilaji' varchar(55) NOT NULL, PRIMARY KEY ('id')
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_sv_0900_ai_ci
+CREATE TABLE genre (
+id int NOT NULL AUTO_INCREMENT,
+tyylilaji varchar(55) NOT NULL, PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_sv_0900_ai_ci;
