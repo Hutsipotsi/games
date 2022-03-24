@@ -2,16 +2,16 @@
 // Get DB connection
 require 'db.php';
 // Create SQL query to get all rows from a table
-$sql = "SELECT * FROM pelit";
+$sql = "SELECT * FROM tunniste";
 // Execute the query
-$pelit = $pdo->query($sql);
+$tunniste = $pdo->query($sql);
 // Check if any was returned
 
 
-if ( $pelit->rowCount() > 0 ){
+if ( $tunniste->rowCount() > 0 ){
     echo "<ul>";
     // Loop till there are no more rows
-    while ( $row = $pelit->fetch() ) {
+    while ( $row = $tunniste->fetch() ) {
         // Echo the data
         echo "<li>" . $row["pelit_id"] . " " . $row["pelin_nimi"]. "</li>";
     }
