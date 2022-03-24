@@ -1,0 +1,185 @@
+body { 	
+		background-color: #CED4E2;
+		background-image: url(kuvat/logoikuna.jpg), url(kuvat/banneri2.jpg);
+		background-position: left top, center top;
+		background-repeat: no-repeat;
+		font-family: helvetica, sans-serif;
+		color: navy;
+		margin-right: 6em;
+}
+
+h1 	{	/*height: 139px;
+		background-image: url(kuvat/tausta_top.jpg);
+		background-position: right;
+		background-repeat: no-repeat;*/
+		margin-left: 9em;
+		margin-top: 4em;
+		text-align: left;
+		padding: 0 0 0 3%;
+		color: #006893;
+		}	
+
+h2	{	/*margin-left: 8em;
+		text-align: left;*/
+		color: #006893;
+		}
+		 
+#logo {
+		
+		background:transparent;
+		float: top;
+		border-top: none;
+		}
+
+#navigation {
+		
+		margin-left: 1em;
+		margin-top: 5%;
+		width: 10em;
+		background:transparent;
+		float: left;
+		border-top: none;
+		}
+
+#navigation1 {
+		font-family: Arial, sans-serif;
+		color:#006893;
+		font-size: 11pt;
+		text-align: center;
+		/*margin-left: 1em;*/
+		margin-top: 5%;
+		width: 10em;
+		border-top: none;
+		}		
+
+#navigation2 {
+		font-family: Arial, sans-serif;
+		color:#006893;
+		font-size: 11pt;
+		text-align: center;
+		/*margin-left: 1em;*/
+		margin-top: 5%;
+		width: 10em;
+		border-top: none;
+		}		
+
+#sidebar {		
+		margin-right: 1em;
+		margin-top: 5%;
+		width: 10em;
+		background:transparent;
+		float: right;
+		text-align: center;
+		border-top: none;
+		}		
+
+#sidebar1 {		
+		margin-left: 1em;
+		margin-top: 5%;
+		width: 10em;
+		background:transparent;
+		float: right;
+		text-align: center;
+		border-top: none;
+		}		
+		
+#sidebar2 {		
+		margin-right: 1em;
+		margin-top: 10em;
+		width: 10em;
+		background:transparent;
+		float: right;
+		text-align: left;
+		border-top: none;		
+		}		
+
+#sidebar3 {		
+		margin-right: 1em;
+		margin-top: 2em;
+		width: 11em;
+		background:transparent;
+		float: right;
+		text-align: left;
+		border-top: none;		
+		}				
+
+#text	{
+		margin-left: 15em;
+		margin-right: 14em;
+		margin-top: 5%;
+		background: transparent;
+		}
+
+#text2	{
+		margin-left: 15em;
+		margin-right: 14em;
+		margin-top: 5%;
+		background: transparent;
+		}	
+
+#text3	{
+		margin-left: 15em;
+		margin-right: 16em;
+		margin-top: 5%;
+		background: transparent;
+		}
+		
+#kuvat	{
+		margin-left: 12em;
+		margin-right: 1%;
+		margin-top: 5%;
+		background: transparent;
+		}
+		
+#laskuri {
+		font-family: Arial, sans-serif;
+		color:#006893;
+		font-size: 11pt;
+		margin-top: 10%;
+		margin-bottom: 1%;
+		float: bottom;
+		text-align: center;		
+		}
+
+#nimip	{
+		font-family: Arial, sans-serif;
+		font-size: 12px;
+		color: #006893;
+		margin-top: 1em;
+		margin-bottom: -3em;
+		margin-right: 3%;
+		float: right;
+		}
+		
+p 		{		
+		font-family:Times New Romain, serif;
+		font-size: 16px;
+		color:navy;
+		line-height:140%;
+		}		
+
+ul 		{
+		list-style-type: circle;
+		font-family:Times New Romain, serif;
+		font-size: 16px;
+		}
+
+table	{
+		font-family:Times New Romain, serif;
+		font-size: 16px;
+		}
+
+.yhteys	{
+		font-size: 14px;
+		}
+		
+a:link, a:visited {text-decoration: none;}
+a:hover {text-decoration: underline;
+		font-weight: bold;}
+		
+#navigation a:hover {text-decoration: none;}
+ 
+#text3 	a:hover {text-decoration: none;} 
+
+#laskuri a:link, a:visited {text-decoration: none;}
+		a:hover {text-decoration: none;} 
