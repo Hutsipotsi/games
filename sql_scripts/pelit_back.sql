@@ -89,11 +89,7 @@ CREATE TABLE `istunto_kayttaja` (
 -- Dumping data for table `istunto_kayttaja`
 --
 
-LOCK TABLES `istunto_kayttaja` WRITE;
-/*!40000 ALTER TABLE `istunto_kayttaja` DISABLE KEYS */;
-INSERT INTO `istunto_kayttaja` VALUES (6,'Hutsi','0mpel1ja','eija.lakso@gmail.com','1'),(7,'ntm','macdata','','2'),(8,'Lakso','Karv1nen','','2'),(11,'Eija','Hut5ipot5i','','1'),(12,'Sara','ConsJava','','2');
-/*!40000 ALTER TABLE `istunto_kayttaja` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `kasikonsolit`
