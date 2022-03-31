@@ -12,25 +12,33 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <body>
 <h1><br/>Pelit, konsolit ja elokuvat</h1>
 
-<div id="navigation">
-<?php include "napit.php"; ?>
+
 
 <p><a href="istunto/index.php">Kirjaudu sis&auml;&auml;n</a></p>
 </div>
 
 <div id="text"><br/>
-<p>T&auml;&auml;lt&auml; l&ouml;ytyv&auml;t meid&auml;n pelitietokannat ja elokuvat. Voit katsoa mit&auml; k&auml;sikonsoleita, pelikonsoleita, pelej&auml; sek&auml; elokuvia meill&auml; on. Peleiss&auml; haut toimivat niin, ett&auml; Hae napilla voit hakea 4 eri taulua yhdell&auml; kertaa ja Hae2 napilla voit hakea tyylilajin ja valmistajan mukaan esim. Seikkailupelit Nintendolta. Voit hakea pelej&auml; my&ouml;s nimihaulla, jolloin voit kirjoittaa koko nimen tai osan nimest&auml;. Elokuvahaussa nimien osat toimivat my&ouml;s. Elokuvista alle puolet on t&auml;ll&auml; hetkell&auml; listattuina.</p>
+<p>Täältä löytyvät meidän pelitietokannat. Voit katsoa mitä käsikonsoleita, pelikonsoleita, pelejä löytyy.</p>
 <br/><br/>
 
-<form action="pelit.php" method="post"><pre><span style="font-family:times new romain; font-size: 12pt"><strong>K&auml;sikonsolit:</strong>               <select name="kasikonsolit"><option value="Kaikki">Kaikki</option><option value="Valitse" selected="selected">Valitse</option></select>        <strong>Pelikonsolit:</strong>              <?php 
-include "yhteys.php";echo"<select name=\"pelikonsolit\">";
+<form action="pelit.php" method="post">
+   <pre>
+      <span><strong>Käsikonsolit:</strong><select name="kasikonsolit">
+   <option value="Kaikki">Kaikki</option>
+   <option value="Valitse" selected="selected">Valitse</option></select>        
+   <strong>Pelikonsolit:</strong>
+   <?php 
+require 'db.php';
+echo"<select name=\"pelikonsolit\">";
 //Haetaan valikkoon lista tietokannan pelityyleistä
-$query = "SELECT DISTINCT valmistaja FROM pelikonsolit ORDER BY valmistaja asc";
+$sql = "SELECT DISTINCT valmistaja FROM pelikonsolit ORDER BY valmistaja asc";
 
-$result = mysql_query($query);
+$konsolit = $pdo->query($sql);
+
+
 
 //luetaan php-taulukkoon
-while ($newArray = mysql_fetch_array($result))
+while ($newArray = mysqli_fetch_array($result))
 {
 	$pelikonsoli = $newArray['valmistaja'];
 
@@ -48,7 +56,7 @@ $query = "SELECT DISTINCT malli FROM konsolit WHERE malli NOT LIKE '%Hero%' AND 
 $result = mysql_query($query);
 
 //luetaan php-taulukkoon
-while ($newArray = mysql_fetch_array($result))
+while ($newArray = mysqli_fetch_array($result))
 {
 	$pelit_konsoli = $newArray['malli'];
 
@@ -64,7 +72,7 @@ $query = "SELECT DISTINCT tyylilaji FROM pelit WHERE tyylilaji NOT LIKE '%/%' OR
 $result = mysql_query($query);
 
 //luetaan php-taulukkoon
-while ($newArray = mysql_fetch_array($result))
+while ($newArray = mysqli_fetch_array($result))
 {
 	$peli = $newArray['tyylilaji'];
 
@@ -79,14 +87,13 @@ while ($newArray = mysql_fetch_array($result))
 </form>
 <br/><br/>
    <?php 
-include "yhteys.php";echo"<strong>Elokuvat kategorioittain:</strong>   <select name=\"kategoria\">";
 //Haetaan valikkoon lista tietokannan kursseista
 $query = "SELECT DISTINCT kategoria FROM elokuvat WHERE kategoria NOT LIKE '%/%'ORDER BY kategoria asc";
 
 $result = mysql_query($query);
 
 //luetaan php-taulukkoon
-while ($newArray = mysql_fetch_array($result))
+while ($newArray = mysqli_fetch_array($result))
 {
 	$kategoria = $newArray['kategoria'];
 
@@ -105,7 +112,6 @@ while ($newArray = mysql_fetch_array($result))
 
 <?php
 
-include "yhteys.php";
 
 
 $submit=$_POST["submit"];
@@ -125,12 +131,12 @@ $haku =mysql_query($kysely);
 echo "<table border cellpadding=5>";
 echo "<tr><td><b>Valmistaja</b></td><td><b>Malli</b></td><td><b>kpl</b></td><td><b>V&auml;ri</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
   
-   $tekija = mysql_result($haku, $i, "tekija");
-   $konsoli = mysql_result($haku, $i, "konsoli");
-   $kpl = mysql_result($haku, $i, "kpl");
-   $vari = mysql_result($haku, $i, "vari");
+   $tekija = mysqli_data_seek($haku, $i, "tekija");
+   $konsoli = mysqli_data_seek($haku, $i, "konsoli");
+   $kpl = mysqli_data_seek($haku, $i, "kpl");
+   $vari = mysqli_data_seek($haku, $i, "vari");
   
    //tulostetaan taulukon rivi
    echo "<tr><td>$tekija</td><td>$konsoli</td><td>$kpl</td><td>$vari</td></tr>";
@@ -153,12 +159,12 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo "<tr><td><b>valmistaja</b></td><td><b>malli</b></td><td><b>kpl</b></td><td><b>V&auml;ri</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $valmistaja = mysql_result($haku, $i, "valmistaja");
-   $malli = mysql_result($haku, $i, "malli");
-   $kpl = mysql_result($haku, $i, "kpl");
-   $vari = mysql_result($haku, $i, "vari");
+   $valmistaja = mysqli_data_seek($haku, $i, "valmistaja");
+   $malli = mysqli_data_seek($haku, $i, "malli");
+   $kpl = mysqli_data_seek($haku, $i, "kpl");
+   $vari = mysqli_data_seek($haku, $i, "vari");
   
    //tulostetaan taulukon rivi
    echo "<tr><td>$valmistaja</td><td>$malli</td><td>$kpl</td><td>$vari</td></tr>";
@@ -175,12 +181,12 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo "<tr><td><b>Peli</b></td><td><b>Tyylilaji</b></td><td><b>Ik&auml;suositus</b></td><td><b>Konsoli</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $pelin_nimi = mysql_result($haku, $i, "pelin_nimi");
-   $tyylilaji = mysql_result($haku, $i, "tyylilaji");
-   $ikasuositus=mysql_result($haku, $i, "ikasuositus");
-   $malli = mysql_result($haku, $i, "malli");
+   $pelin_nimi = mysqli_data_seek($haku, $i, "pelin_nimi");
+   $tyylilaji = mysqli_data_seek($haku, $i, "tyylilaji");
+   $ikasuositus= mysqli_data_seek($haku, $i, "ikasuositus");
+   $malli = mysqli_data_seek($haku, $i, "malli");
    
   
    //tulostetaan taulukon rivi
@@ -198,12 +204,12 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo "<tr><td><b>Peli</b></td><td><b>Tyylilaji</b></td><td><b>Ik&auml;suositus</b></td><td><b>Konsoli</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $pelin_nimi = mysql_result($haku, $i, "pelin_nimi");
-   $tyylilaji = mysql_result($haku, $i, "tyylilaji");
-   $ikasuositus=mysql_result($haku, $i, "ikasuositus");
-   $malli = mysql_result($haku, $i, "malli");
+   $pelin_nimi = mysqli_data_seek($haku, $i, "pelin_nimi");
+   $tyylilaji = mysqli_data_seek($haku, $i, "tyylilaji");
+   $ikasuositus=mysqli_data_seek($haku, $i, "ikasuositus");
+   $malli = mysqli_data_seek($haku, $i, "malli");
    
   
    //tulostetaan taulukon rivi
@@ -221,12 +227,12 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo "<tr><td><b>Peli</b></td><td><b>Tyylilaji</b></td><td><b>Ik&auml;suositus</b></td><td><b>Konsoli</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $pelin_nimi = mysql_result($haku, $i, "pelin_nimi");
-   $tyylilaji = mysql_result($haku, $i, "tyylilaji");
-   $ikasuositus=mysql_result($haku, $i, "ikasuositus");
-   $malli = mysql_result($haku, $i, "malli");
+   $pelin_nimi = mysqli_data_seek($haku, $i, "pelin_nimi");
+   $tyylilaji = mysqli_data_seek($haku, $i, "tyylilaji");
+   $ikasuositus=mysqli_data_seek($haku, $i, "ikasuositus");
+   $malli = mysqli_data_seek($haku, $i, "malli");
    
   
    //tulostetaan taulukon rivi
@@ -250,13 +256,13 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo"<tr><td><b>Peli</b></td><td><b>Tyylilaji</b></td><td><b>Ik&auml;suositus</b></td><td><b>Konsoli</b></td><td><b>valmistaja</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $pelin_nimi = mysql_result($haku, $i, "pelin_nimi");
-   $tyylilaji = mysql_result($haku, $i, "tyylilaji");
-   $ikasuositus=mysql_result($haku, $i, "ikasuositus");
-   $malli = mysql_result($haku, $i, "malli");
-   $valmistaja = mysql_result($haku, $i, "valmistaja");
+   $pelin_nimi = mysqli_data_seek($haku, $i, "pelin_nimi");
+   $tyylilaji = mysqli_data_seek($haku, $i, "tyylilaji");
+   $ikasuositus=mysqli_data_seek($haku, $i, "ikasuositus");
+   $malli = mysqli_data_seek($haku, $i, "malli");
+   $valmistaja = mysqli_data_seek($haku, $i, "valmistaja");
   
    //tulostetaan taulukon rivi
    echo "<tr><td>$pelin_nimi</td><td>$tyylilaji</td><td><center>$ikasuositus</center></td><td>$malli</td><td>$valmistaja</td></tr>";
@@ -275,13 +281,13 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo"<tr><td><b>Peli</b></td><td><b>Tyylilaji</b></td><td><b>Ik&auml;suositus</b></td><td><b>Konsoli</b></td><td><b>valmistaja</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $pelin_nimi = mysql_result($haku, $i, "pelin_nimi");
-   $tyylilaji = mysql_result($haku, $i, "tyylilaji");
-   $ikasuositus=mysql_result($haku, $i, "ikasuositus");
-   $malli = mysql_result($haku, $i, "malli");
-   $valmistaja = mysql_result($haku, $i, "valmistaja");
+   $pelin_nimi = mysqli_data_seek($haku, $i, "pelin_nimi");
+   $tyylilaji = mysqli_data_seek($haku, $i, "tyylilaji");
+   $ikasuositus=mysqli_data_seek($haku, $i, "ikasuositus");
+   $malli =mysqli_data_seek($haku, $i, "malli");
+   $valmistaja = mysqli_data_seek($haku, $i, "valmistaja");
   
    //tulostetaan taulukon rivi
    echo "<tr><td>$pelin_nimi</td><td>$tyylilaji</td><td><center>$ikasuositus</center></td><td>$malli</td><td>$valmistaja</td></tr>";
@@ -305,10 +311,10 @@ echo "<tr><td><b>Peli</b></td><td><b>Tyylilaji</b></td><td><b>Ik&auml;suositus</
 
 for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $pelin_nimi = mysqli_result($haku, $i, "pelin_nimi");
-   $tyylilaji = mysql_result($haku, $i, "tyylilaji");
-   $ikasuositus=mysql_result($haku, $i, "ikasuositus");
-   $malli = mysql_result($haku, $i, "malli");
+   $pelin_nimi = mysqli_data_seek($haku, $i, "pelin_nimi");
+   $tyylilaji = mysqli_data_seek($haku, $i, "tyylilaji");
+   $ikasuositus=mysqli_data_seek($haku, $i, "ikasuositus");
+   $malli = mysqli_data_seek($haku, $i, "malli");
    
   
    //tulostetaan taulukon rivi
@@ -355,14 +361,14 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo "<tr><td><b>Elokuva</b></td><td><b>P&auml;&auml;osassa</b></td><td><b>Ohjaaja</b></td><td><b>Kategoria</b></td><td><b>Formaatti</b></td><td><b>Kpl</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $nimi = mysql_result($haku, $i, "nimi");
-   $paaosa = mysql_result($haku, $i, "paaosa");
-   $ohjaaja = mysql_result($haku, $i, "ohjaaja");
-   $kategoria = mysql_result($haku, $i, "kategoria");
-   $formaatti = mysql_result($haku, $i, "formaatti");
-   $kpl = mysql_result($haku, $i, "kpl");
+   $nimi = mysqli_data_seek($haku, $i, "nimi");
+   $paaosa = mysqli_data_seek($haku, $i, "paaosa");
+   $ohjaaja = mysqli_data_seek($haku, $i, "ohjaaja");
+   $kategoria = mysqli_data_seek($haku, $i, "kategoria");
+   $formaatti = mysqli_data_seek($haku, $i, "formaatti");
+   $kpl = mysqli_data_seek($haku, $i, "kpl");
   
    //tulostetaan taulukon rivi
    echo "<tr><td>$nimi</td><td>$paaosa</td><td>$ohjaaja</td><td>$kategoria</td><td>$formaatti</td><td>$kpl</td></tr>";
@@ -379,14 +385,14 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo "<tr><td><b>Elokuva</b></td><td><b>P&auml;&auml;osassa</b></td><td><b>Ohjaaja</b></td><td><b>Kategoria</b></td><td><b>Formaatti</b></td><td><b>Kpl</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-    $nimi = mysql_result($haku, $i, "nimi");
-   $paaosa = mysql_result($haku, $i, "paaosa");
-   $ohjaaja = mysql_result($haku, $i, "ohjaaja");
-   $kategoria = mysql_result($haku, $i, "kategoria");
-   $formaatti = mysql_result($haku, $i, "formaatti");
-   $kpl = mysql_result($haku, $i, "kpl");
+    $nimi = mysqli_data_seek($haku, $i, "nimi");
+   $paaosa = mysqli_data_seek($haku, $i, "paaosa");
+   $ohjaaja = mysqli_data_seek($haku, $i, "ohjaaja");
+   $kategoria = mysqli_data_seek($haku, $i, "kategoria");
+   $formaatti = mysqli_data_seek($haku, $i, "formaatti");
+   $kpl = mysqli_data_seek($haku, $i, "kpl");
    
   
    //tulostetaan taulukon rivi
@@ -409,14 +415,14 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo "<tr><td><b>Elokuva</b></td><td><b>P&auml;&auml;osassa</b></td><td><b>Ohjaaja</b></td><td><b>Kategoria</b></td><td><b>Formaatti</b></td><td><b>Kpl</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $nimi = mysql_result($haku, $i, "nimi");
-   $paaosa = mysql_result($haku, $i, "paaosa");
-   $ohjaaja = mysql_result($haku, $i, "ohjaaja");
-   $kategoria = mysql_result($haku, $i, "kategoria");
-   $formaatti = mysql_result($haku, $i, "formaatti");
-   $kpl = mysql_result($haku, $i, "kpl");
+   $nimi = mysqli_data_seek($haku, $i, "nimi");
+   $paaosa = mysqli_data_seek($haku, $i, "paaosa");
+   $ohjaaja = mysqli_data_seek($haku, $i, "ohjaaja");
+   $kategoria = mysqli_data_seek($haku, $i, "kategoria");
+   $formaatti = mysqli_data_seek($haku, $i, "formaatti");
+   $kpl = mysqli_data_seek($haku, $i, "kpl");
    
   
    //tulostetaan taulukon rivi
@@ -438,14 +444,14 @@ $haku =mysql_query($kysely1);
 echo "<br/><table border cellpadding=5>";
 echo "<tr><td><b>Elokuva</b></td><td><b>P&auml;&auml;osassa</b></td><td><b>Ohjaaja</b></td><td><b>Kategoria</b></td><td><b>Formaatti</b></td><td><b>Kpl</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $nimi = mysql_result($haku, $i, "nimi");
-   $paaosa = mysql_result($haku, $i, "paaosa");
-   $ohjaaja = mysql_result($haku, $i, "ohjaaja");
-   $kategoria = mysql_result($haku, $i, "kategoria");
-   $formaatti = mysql_result($haku, $i, "formaatti");
-   $kpl = mysql_result($haku, $i, "kpl");
+   $nimi = mysqli_data_seek($haku, $i, "nimi");
+   $paaosa = mysqli_data_seek($haku, $i, "paaosa");
+   $ohjaaja = mysqli_data_seek($haku, $i, "ohjaaja");
+   $kategoria = mysqli_data_seek($haku, $i, "kategoria");
+   $formaatti = mysqli_data_seek($haku, $i, "formaatti");
+   $kpl = mysqli_data_seek($haku, $i, "kpl");
    
    //tulostetaan taulukon rivi
    echo "<tr><td>$nimi</td><td>$paaosa</td><td>$ohjaaja</td><td>$kategoria</td><td>$formaatti</td><td>$kpl</td></tr>";
@@ -465,14 +471,14 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo "<tr><td><b>Elokuva</b></td><td><b>P&auml;&auml;osassa</b></td><td><b>Ohjaaja</b></td><td><b>Kategoria</b></td><td><b>Formaatti</b></td><td><b>Kpl</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $nimi = mysql_result($haku, $i, "nimi");
-   $paaosa = mysql_result($haku, $i, "paaosa");
-   $ohjaaja = mysql_result($haku, $i, "ohjaaja");
-   $kategoria = mysql_result($haku, $i, "kategoria");
-   $formaatti = mysql_result($haku, $i, "formaatti");
-   $kpl = mysql_result($haku, $i, "kpl");
+   $nimi = mysqli_data_seek($haku, $i, "nimi");
+   $paaosa = mysqli_data_seek($haku, $i, "paaosa");
+   $ohjaaja = mysqli_data_seek($haku, $i, "ohjaaja");
+   $kategoria = mysqli_data_seek($haku, $i, "kategoria");
+   $formaatti = mysqli_data_seek($haku, $i, "formaatti");
+   $kpl = mysqli_data_seek($haku, $i, "kpl");
    
   
    //tulostetaan taulukon rivi

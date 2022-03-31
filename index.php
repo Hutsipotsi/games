@@ -20,9 +20,9 @@ if ( $tunniste->rowCount() > 0 ){
 
 }
 
+//testi
+
 //Tässä toinen tapa käydä kyselyn tulos läpi:
 // foreach($people as $row){
 //     echo "<li>" . $row["firstname"] . " " . $row["lastname"]. "</li>";
 // }
-
-include('foot.php');
