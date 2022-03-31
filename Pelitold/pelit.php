@@ -78,13 +78,7 @@ while ($newArray = mysql_fetch_array($result))
 <strong>Nimihaku:</strong> &nbsp;&nbsp;<input type ="text" name="pelin_nimi"/>       <input type="submit" name="submit" value="Haenimi"/></span></pre>
 </form>
 <br/><br/>
-<form method="post" action=""> 
-<pre><span style="font-family:times new romain; font-size: 12pt"><strong>Elokuvat formaateittain:</strong>  <select name="elokuvat">
-<option value="VHS">VHS</option>
-<option value="DVD">DVD</option>
-<option value="Kaikki">Kaikki</option>
-<option value="Valitse" selected="selected">Valitse</option>
-</select>    <?php 
+   <?php 
 include "yhteys.php";echo"<strong>Elokuvat kategorioittain:</strong>   <select name=\"kategoria\">";
 //Haetaan valikkoon lista tietokannan kursseista
 $query = "SELECT DISTINCT kategoria FROM elokuvat WHERE kategoria NOT LIKE '%/%'ORDER BY kategoria asc";
@@ -309,9 +303,9 @@ $haku =mysql_query($kysely);
 echo "<br/><table border cellpadding=5>";
 echo "<tr><td><b>Peli</b></td><td><b>Tyylilaji</b></td><td><b>Ik&auml;suositus</b></td><td><b>Konsoli</b></td></tr>";
 
-for ($i = 0; $i <mysql_num_rows($haku); $i++) {
+for ($i = 0; $i <mysqli_num_rows($haku); $i++) {
 
-   $pelin_nimi = mysql_result($haku, $i, "pelin_nimi");
+   $pelin_nimi = mysqli_result($haku, $i, "pelin_nimi");
    $tyylilaji = mysql_result($haku, $i, "tyylilaji");
    $ikasuositus=mysql_result($haku, $i, "ikasuositus");
    $malli = mysql_result($haku, $i, "malli");
