@@ -1,4 +1,4 @@
-CREATE TABLE tunniste (
+CREATE TABLE konsolitunniste (
 id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 valmistaja varchar(25) NOT NULL,
 malli varchar(30) NOT NULL
