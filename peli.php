@@ -48,6 +48,23 @@ if ($genre->rowCount() > 0) {
     echo '</select><br/>';
 }
 
+
+//Haetaan valikkoon lista
+$sql = "SELECT DISTINCT malli FROM konsolit WHERE malli NOT LIKE '%Hero%' AND malli NOT LIKE '%Groud%' AND malli NOT LIKE '%Micro%' AND malli NOT LIKE '%One%' ORDER BY malli asc";
+
+$konsolit = $pdo->query($sql);
+
+if ($konsolit->rowCount() > 0) {
+    echo '<label for="konsolit">Konsolit:</label>
+    <select name="konsolit">';
+    
+    foreach ($konsolit as $row) {
+        echo '<option value="' .$row["malli"] .'">' . $row["malli"] . '</option>';
+    }
+    echo '</select><br/>';
+}
+
+
 echo '<input type="submit" name="submit" value="Hae"/>';
 
 
