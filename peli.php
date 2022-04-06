@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./pelitold/tyylit.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
     <title>Pelit</title>
 </head>
 <body>
-    <header></header>
+    <header id="header" >Pelitietokanta</header>
+
 
 <form action="" method="POST">
-
 <label for="kasikonsolit">Käsikonsolit</label>
 <select name="kasikonsolit" id="kasikonsolit">
     <option value="Kaikki">Kaikki</option>
     <option value="Valitse" selected="selected">Valitse</option>
 </select>
 
-<nav></nav>
+<nav id="navigointi"></nav>
+
 <?php 
 require 'db.php';
 
@@ -58,5 +59,6 @@ echo '<input type="submit" name="submit" value="Hae"/>';
 
 ?>
 </form>
+<footer id="footer"></footer>
 </body>
 </html>
