@@ -1,4 +1,4 @@
 CREATE TABLE genre (
-id int NOT NULL AUTO_INCREMENT,
-tyylilaji varchar(55) NOT NULL, PRIMARY KEY (id)
+id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+tyylilaji varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_sv_0900_ai_ci;

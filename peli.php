@@ -21,7 +21,7 @@
 <nav id="navigointi"></nav>
 
 <?php 
-require 'db.php';
+require './src/modules/db.php';
 
 //Haetaan valikkoon lista tietokannan pelityyleistä
 $sql = "SELECT DISTINCT valmistaja FROM pelikonsoli ORDER BY valmistaja asc";
@@ -54,7 +54,7 @@ if ($genre->rowCount() > 0) {
 
 
 //Haetaan valikkoon lista
-$sql = "SELECT DISTINCT malli FROM konsolit WHERE malli NOT LIKE '%Hero%' AND malli NOT LIKE '%Groud%' AND malli NOT LIKE '%Micro%' AND malli NOT LIKE '%One%' ORDER BY malli asc";
+$sql = "SELECT DISTINCT malli FROM konsoli WHERE malli NOT LIKE '%Hero%' AND malli NOT LIKE '%Groud%' AND malli NOT LIKE '%Micro%' AND malli NOT LIKE '%One%' ORDER BY malli asc";
 
 $konsolit = $pdo->query($sql);
 

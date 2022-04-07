@@ -1,8 +1,6 @@
 CREATE TABLE konsoli (
 id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-tunniste int NOT NULL,
-valmistaja varchar(25) NOT NULL,
-malli varchar(25) NOT NULL,
+konsolitunniste int NOT NULL,
 kpl int NOT NULL,
 vari varchar(55) NOT NULL,
 FOREIGN KEY (konsolitunniste) REFERENCES konsolitunniste(id)
