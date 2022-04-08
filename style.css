@@ -23,3 +23,6 @@ footer {
   height: 75vh; /* only for demonstration, should be removed */
   padding: 20px;
 }
+ul {
+    text-decoration: none;
+}

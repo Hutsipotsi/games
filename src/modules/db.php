@@ -4,7 +4,8 @@
 //Tässä haetaan tiedot init-tiedostosta. 
 //Voit käyttää myös ylempänä olevaa config.php tiedostoa
 //jos haluat. Kommentoi silloin seuraavat rivit.
-$init = parse_ini_file("./myconf.ini");
+function getPdoConnection() {
+$init = parse_ini_file("../myconf.ini");
 $host = $init["host"];
 $db = $init["db"];
 $user = $init["username"];
@@ -16,4 +17,6 @@ try {
     //echo "Connected!";
 } catch (PDOException $e) {
 	echo $e->getMessage();
+}
+	return $pdo;
 }
