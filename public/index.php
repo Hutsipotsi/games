@@ -17,7 +17,13 @@
     <ul>
          <li><a href="index.php">Etusivu</a></li>
         <li><a href="peli.php">Pelit</a></li>
-        <li><a href="login.php">Kirjaudu sisään</a></li>
+    <?php
+        if(isset($_SESSION["tunnus"])){
+            echo '<a href="logout.php">Kirjaudu ulos</a>';
+        }else{
+            echo '<a href="login.php">Kirjaudu sisään</a>';
+        }
+    ?>
     </ul>
 </nav>
 
@@ -29,7 +35,7 @@
 
 
  if(isset($_session['tunnus'])){
-     echo'welcome'.$_SESSION['tunnus']. " ".$_SESSION['salasana']. "</h1>";
+     echo'welcome'.$_SESSION['tunnus']."</h1>";
  }else{
      echo '';
  }
@@ -66,6 +72,8 @@ if ( $konsolitunniste->rowCount() > 0 ){
 // foreach($people as $row){
 //     echo "<li>" . $row["firstname"] . " " . $row["lastname"]. "</li>";
 // }
+
+
 ?>
 
 </form>

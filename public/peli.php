@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,6 +76,11 @@ echo '<input type="submit" name="submit" value="Hae"/>';
 
 
 
+if(isset($_SESSION["username"])){
+    echo '<a class="nav-link bg-danger" href="logout.php">Log out</a>';
+}else{
+    echo '<a class="nav-link bg-success" href="login.php">Log in</a>';
+}
 ?>
 </form>
 <footer id="footer"></footer>
