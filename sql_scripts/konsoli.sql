@@ -2,6 +2,39 @@ CREATE TABLE konsoli (
 id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 konsolitunniste int NOT NULL,
 kpl int NOT NULL,
-vari varchar(55) NOT NULL,
+vari varchar(55),
+konsolityyppi VARCHAR(15) NOT NULL,	
 FOREIGN KEY (konsolitunniste) REFERENCES konsolitunniste(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_sv_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_sv_0900_ai_ci;
+
+
+INSERT INTO konsoli (id, konsolitunniste, kpl, vari, konsolityyppi) VALUES
+(1, 1, 2, 'Black', 'Pelikonsoli'),
+(2, 2, 2, 'Grey', 'Pelikonsoli'),
+(3, 3, 3, 'Grey', 'Pelikonsoli'),
+(4, 4, 3, 'Black', 'Pelikonsoli'),
+(5, 4, 3, 'Ice Blue', 'Pelikonsoli'),
+(6, 5, 3, 'Metroid Prime Black', 'Pelikonsoli'), 
+(7, 5, 3, 'Purple', 'Pelikonsoli'),
+(8, 6, 2, 'Valkoinen', 'Pelikonsoli'),
+(9, 6, 2, 'Musta', 'Pelikonsoli'),
+(10, 7, 2, 'Grey', 'Pelikonsoli'),
+(11, 8, 1, 'Light Grey', 'Pelikonsoli'),
+(12, 9, 2, 'Black', 'Pelikonsoli'),
+(13, 10, 4, 'Black', 'Pelikonsoli'),
+(14, 11, 2, 'Black', 'Pelikonsoli'),
+(15, 12, 1, '', 'Tietokone'),
+(16, 13, 1,	'', 'Tietokone'),
+(17, 14, 1, 'Black', 'Käsikonsoli'),
+(18, 15, 1, 'Grape', 'Käsikonsoli'),
+(19, 15, 1, 'Atomic Purple', 'Käsikonsoli'),
+(20, 15, 1, 'Teal', 'Käsikonsoli'),
+(21, 16, 1,'Black', 'Käsikonsoli'),
+(22, 16, 1, 'Arctic', 'Käsikonsoli'),
+(23, 17, 1, 'Silver', 'Käsikonsoli'),
+(24, 18, 1, 'Red', 'Käsikonsoli'),
+(25, 19, 2, 'Metallic Silver', 'Käsikonsoli'),
+(26, 20, 1, 'Silver/Black', 'Käsikonsoli'),
+(27, 21, 1, 'Black', 'Pelikonsoli'),
+(28, 22, 2, 'Black', 'Käsikonsoli'),
+(29, 23, 1, 'Black', 'Pelikonsoli');
