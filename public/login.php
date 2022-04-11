@@ -3,21 +3,20 @@
 include '../src/modules/authorization.php';
 
 $uname = filter_input(INPUT_POST, "tunnus");
-$pw = filter_input(INPUT_POST, "salasana");
+$pass = filter_input(INPUT_POST, "salasana");
 
-if(!isset($_SESSION["tunnus"]) && isset($uname)){
+if (!isset($_SESSION["tunnus"]) && isset($uname)) {
 
     try {
-        login($uname, $pw);
+        login($uname, $pass);
         header("Location: index.php");
         exit;
     } catch (Exception $e) {
-        echo '<div class="alert alert-danger" role="alert">'.$e->getMessage().'</div>';
+        echo '<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>';
     }
-   
 }
 
-    if(!isset($_SESSION["tunnus"])){
+if (!isset($_SESSION["tunnus"])) {
 ?>
 
     <form action="login.php" method="post">

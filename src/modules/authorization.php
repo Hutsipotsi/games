@@ -1,15 +1,15 @@
 <?php
-function login($uname, $pw){
+function login($uname, $pass){
 
     require_once '../src/modules/db.php';
 
     //Tarkistetaan onko muttujia asetettu
-    if( !isset($uname) || !isset($pw) ){
+    if( !isset($uname) || !isset($pass) ){
         throw new Exception("Missing parameters. Cannot log in.");
     }
 
     //Tarkistetaan, ettei tyhjiä arvoja muuttujissa
-    if( empty($uname) || empty($pw) ){
+    if( empty($uname) || empty($pass) ){
         throw new Exception("Cannot log in with empty values.");
     }
 
@@ -28,7 +28,7 @@ function login($uname, $pw){
         $row = $statement->fetch();
 
         //Tarkistetaan käyttäjän antama salasana tietokannan salasanaa vasten
-        if(!password_verify($pw, $row["salasana"] )){
+        if(!password_verify($pass, $row["salasana"] )){
             throw new Exception("Väärä salasana!!");
         }
 
@@ -50,5 +50,3 @@ function logout(){
         throw $e;
     }
 }
-
-?>

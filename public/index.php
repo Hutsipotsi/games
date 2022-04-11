@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +10,6 @@
 <body>
     <header id="header">Pelitietokanta</header>
    
-
 <nav>
     <ul>
          <li><a href="index.php">Etusivu</a></li>
@@ -31,22 +28,18 @@
 
 <?php
 
-
-
-
  if(isset($_session['tunnus'])){
      echo'welcome'.$_SESSION['tunnus']."</h1>";
  }else{
      echo '';
  }
 
- 
-
-
-
 
 // Get DB connection
 require '../src/modules/db.php';
+
+$pdo = getPdoConnection();
+
 // Create SQL query to get all rows from a table
 $sql = "SELECT * FROM konsolitunniste";
 // Execute the query

@@ -1,28 +1,30 @@
 #header {
     width: 97.5vw;
     height: 50px;
-    background-color: #E0C1AB;
+    background-color: #CED4E2;
     text-align: center;
-   padding: 10px;
+    padding: 10px;
 }
 
-footer {
-    background-color: #E0C1AB;
+#footer {
+    background-color: #CED4E2;
     position: absolute;
     bottom: 0;
     width: 97.5vw;
     height: 2.5rem;  
     padding: 10px;
 }
+
 #kasikonsolit {
     margin: 10px;
 }
+
 #navigointi {
     float: left;
-  width: 10%;
-  height: 75vh; /* only for demonstration, should be removed */
-  padding: 20px;
+    width: 10%;
+    height: 75vh; /* only for demonstration, should be removed */padding: 20px;
 }
+
 ul {
     text-decoration: none;
 }
