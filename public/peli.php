@@ -73,7 +73,7 @@
     echo '<br/>';
 
     //Haetaan valikkoon lista valmistajista
-    $sql = "SELECT DISTINCT valmistaja FROM konsolitunniste ORDER BY valmistaja asc";
+    $sql = "SELECT DISTINCT valmistaja FROM konsolitunniste WHERE malli NOT LIKE '%PC%' ORDER BY valmistaja asc";
 
     $konsoli = $pdo->query($sql);
 
@@ -84,7 +84,7 @@
         foreach ($konsoli as $row) {
             echo '<option value="' . $row["valitse"] . '">' . $row["valmistaja"] . '</option>';
         }
-        echo '<option value="Valitse" selected="selected">Valitse</option></select><br/>';
+        echo '<option value="pelikonsoli">Pelikonsolit</option><option value="kasikonsoli">Käsikonsolit</option><option value="Valitse" selected="selected">Valitse</option></select><br/>';
     }
 
     echo '<br/>';
