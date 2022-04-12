@@ -1,4 +1,4 @@
-INSERT INTO `pelit` VALUES
+INSERT INTO `pelitback` (pelin_nimi, tyylilaji, ikasuositus, tunniste) VALUES
 ('Black Manta', '24 / 28', 0, 2),
 ('Captain Comic', '24', 0, 2),
 ('Chip`n Dale, Rescue Rangers', '31', 0, 2),

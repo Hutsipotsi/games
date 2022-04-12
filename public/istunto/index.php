@@ -36,7 +36,7 @@
 
 
 // Get DB connection
-require '../src/modules/db.php';
+require '../../src/modules/db.php';
 
 $pdo = getPdoConnection();
 

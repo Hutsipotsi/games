@@ -127,7 +127,7 @@ if ($submit=="Hae")
 if ($_POST["kasikonsolit"]!="Valitse" )
 {
 $kysely = "SELECT tekija, konsoli, kpl, vari FROM kasikonsolit";
-$haku =mysql_query($kysely);
+$haku =mysqli_query($kysely);
 echo "<table border cellpadding=5>";
 echo "<tr><td><b>Valmistaja</b></td><td><b>Malli</b></td><td><b>kpl</b></td><td><b>V&auml;ri</b></td></tr>";
 

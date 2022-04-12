@@ -9,12 +9,12 @@ include "yhteys.php";
 $login = mysql_query("select * from istunto_kayttaja where (tunnus = '" . $_POST['username'] . "') and (salasana = '" . ($_POST['password']) . "')",$link);
 
 
-	while ($newArray = mysql_fetch_array($login)) {
+	while ($newArray = mysqli_fetch_array($login)) {
 	$id =    $newArray['id'];
     $oikat = $newArray['admin'];
 	}
 	
-$rowcount = mysql_num_rows($login);
+$rowcount = mysqli_num_rows($login);
 
 if ($rowcount == 1) {
 			
