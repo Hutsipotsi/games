@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,10 +27,10 @@
   
             <li class="nav-item">
             <?php 
-                if(isset($_SESSION["tunnus"])){
-                    echo '<a class="nav-link bg-danger" href="../public/istunto/logout.php">Log out</a>';
+                if(!isset($_SESSION["tunnus"])){
+                    echo '<a class="nav-link bg-success" href="login.php">Log in</a>';
                 }else{
-                    echo '<a class="nav-link bg-success" href="../public/istunto/login.php">Log in</a>';
+                    echo '<a class="nav-link bg-danger" href="logout.php">Log out</a>';
                 }
             ?>
             </li>
