@@ -3,6 +3,9 @@
 require '../../src/templates/header.php';
 include '../../src/modules/kayttaja.php';
 
+
+
+
     $uname = filter_input(INPUT_POST, "tunnus");
     $pw = filter_input(INPUT_POST, "password");
     $email = filter_input(INPUT_POST, "email");
@@ -14,9 +17,36 @@ include '../../src/modules/kayttaja.php';
             echo '<div class="alert alert-success" role="alert">Person added!!</div>';
         }catch(Exception $e){
             echo '<div class="alert alert-danger" role="alert">'.$e->getMessage().'</div>';
+
         }
-        
+      }
+/* $pdo = getPdoConnection();
+
+
+echo '<strong>Käyttäjätunnus:</strong> &nbsp;&nbsp;<input type ="text" name="tunnus"/><br/>';
+
+echo '<strong>Salasana:</strong> &nbsp;&nbsp;<input type ="text" name="password"/><br/>';
+
+echo '<strong>Sähköposti:</strong> &nbsp;&nbsp;<input type ="text" name="email"/><br/>';
+
+//Haetaan valikkoon tunnistenumero
+$sql = "SELECT admin FROM istunto_kayttaja";
+
+$oikat = $pdo->query($sql);
+
+    if ($oikat->rowCount() > 0) {
+        echo '<label for="admin">Käyttöoikeus nro:</label>
+    <select name="admin">';
+
+        foreach ($oikat as $row) {
+            echo '<option value="' . $row["admin"] . '">' . $row["admin"] . '</option>';
+        }
+        echo '<option value="Valitse" selected="selected">Valitse</option></select><br/>';
     }
+echo '<br/>';
+
+echo '<input type="submit" name="tallenna" value="Tallenna"/>';
+echo '<input type="submit" name="poista" value="Poista"/>'; */
 
 ?>
 
