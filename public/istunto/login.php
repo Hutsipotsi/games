@@ -9,7 +9,7 @@ if (!isset($_SESSION["tunnus"]) && isset($uname)) {
 
     try {
         login($uname, $pass);
-        header("Location: index.php");
+        header("Location: ../peli.php");
         exit;
     } catch (Exception $e) {
         echo '<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>';

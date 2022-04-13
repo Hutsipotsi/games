@@ -16,17 +16,17 @@ function getPeople(){
     }
 }
 
-function addPerson($uname, $pw, $email, $oikat){
+function addPerson($uname, $email, $oikat, $pw){
     require_once 'db.php'; // DB connection
 
     //Tarkistetaan onko muttujia asetettu
-    if( !isset($uname) || !isset($pw) || !isset($email) || !isset($oikat) ){
+    if( !isset($uname) || !isset($email) || !isset($oikat) || !isset($pw) ){
         echo "Parametreja puuttui!! Ei voida lisätä henkilöä";
         exit;
     }
 
     //Tarkistetaan, ettei tyhjiä arvoja muuttujissa
-    if( empty($uname) || empty($pw) || empty($email) || empty($oikat) ){
+    if( empty($uname) || empty($email) || empty($oikat) || empty($pw) ){
         echo "Et voi asettaa tyhjiä arvoja!!";
         exit;
     }
@@ -34,7 +34,7 @@ function addPerson($uname, $pw, $email, $oikat){
     try{
         $pdo = getPdoConnection();
         //Suoritetaan parametrien lisääminen tietokantaan.
-        $sql = "INSERT INTO istunto_kayttaja (tunnus, password, email, admin) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO istunto_kayttaja (tunnus, email, admin, password) VALUES (?, ?, ?, ?)";
         $statement = $pdo->prepare($sql);
         $statement->bindParam(1, $uname);
         $statement->bindParam(2, $email);

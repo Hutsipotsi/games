@@ -26,7 +26,7 @@
   
             <li class="nav-item">
             <?php 
-                if(isset($_SESSION["username"])){
+                if(isset($_SESSION["tunnus"])){
                     echo '<a class="nav-link bg-danger" href="../public/istunto/logout.php">Log out</a>';
                 }else{
                     echo '<a class="nav-link bg-success" href="../public/istunto/login.php">Log in</a>';

@@ -28,7 +28,7 @@ function login($uname, $pass){
         $row = $statement->fetch();
 
         //Tarkistetaan käyttäjän antama salasana tietokannan salasanaa vasten
-        if(!password_verify($pass, $row["salasana"] )){
+        if(!password_verify($pass, $row["password"] )){
             throw new Exception("Väärä salasana!!");
         }
 
