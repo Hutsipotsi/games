@@ -1,23 +1,9 @@
 <?php session_start(); ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../style.css" />
-    <title>Pelit</title>
-</head>
-
-<body>
-    <header id="header">Pelitietokanta</header>
-
-    <nav id="navigointi"></nav>
-
 <?php
     require '../src/modules/db.php';
+
+    require '../src/templates/header.php';
 
     $pdo = getPdoConnection();
 
@@ -93,13 +79,7 @@
 
     echo '<input type="submit" name="submit" value="Hae"/>';
 
-
-    if (isset($_SESSION["username"])) {
-        echo '<a class="nav-link bg-danger" href="logout.php">Log out</a>';
-    } else {
-        echo '<a class="nav-link bg-success" href="login.php">Log in</a>';
-    }
-    ?>
+?>
     <!--</form>-->
     <footer id="footer"></footer>
 </body>

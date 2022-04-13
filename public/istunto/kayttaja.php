@@ -1,6 +1,6 @@
 <?php
 
-require '../../src/modules/header.php';
+require '../../src/templates/header.php';
 require 'db.php';
 
  $pdo = getPdoConnection();
@@ -8,7 +8,7 @@ require 'db.php';
 
 echo '<strong>Käyttäjätunnus:</strong> &nbsp;&nbsp;<input type ="text" name="tunnus"/><br/>';
 
-echo '<strong>Salasana:</strong> &nbsp;&nbsp;<input type ="text" name="salasana"/><br/>';
+echo '<strong>Salasana:</strong> &nbsp;&nbsp;<input type ="password" name="salasana"/><br/>';
 
 echo '<strong>Sähköposti:</strong> &nbsp;&nbsp;<input type ="text" name="email"/><br/>';
 

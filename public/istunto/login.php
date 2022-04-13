@@ -1,6 +1,6 @@
 <?php
-
-include '../src/modules/authorization.php';
+include  '../../src/templates/header.php';
+include '../../src/modules/authorization.php';
 
 $uname = filter_input(INPUT_POST, "tunnus");
 $pass = filter_input(INPUT_POST, "salasana");
