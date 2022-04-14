@@ -2,7 +2,7 @@
 <?php
     require '../src/modules/db.php';
 
-    require '../src/templates/header.php';
+    include TEMPLATES_DIR . 'header.php';
 
     $pdo = getPdoConnection();
 
@@ -78,9 +78,5 @@
 
     echo '<input type="submit" name="submit" value="Hae"/>';
 
+    include TEMPLATES_DIR . 'footer.php';
 ?>
-    <!--</form>-->
-    <footer id="footer"></footer>
-</body>
-
-</html>
