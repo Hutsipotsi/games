@@ -18,7 +18,7 @@ function createConsoleIdDropdown() {
 
     $consoleIDs = getConsoleIDs();
 
-    echo '<label for="konsolitunniste">Konsolitunniste: </label>';
+    echo '<label for="konsolitunniste">Konsoli: </label>';
     echo '<select name="konsolitunniste" id="konsolitunniste" class="dropdown">';
     foreach($consoleIDs as $consoleID) {
         echo '<option value="' . $consoleID["id"] . '">' . $consoleID["malli"] . '</a>';
