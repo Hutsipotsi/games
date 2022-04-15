@@ -1,37 +1,3 @@
-<?php
-
-require '../../src/modules/header.php';
-require 'db.php';
-
- $pdo = getPdoConnection();
-
-
-echo '<strong>Käyttäjätunnus:</strong> &nbsp;&nbsp;<input type ="text" name="tunnus"/><br/>';
-
-echo '<strong>Salasana:</strong> &nbsp;&nbsp;<input type ="text" name="salasana"/><br/>';
-
-echo '<strong>Sähköposti:</strong> &nbsp;&nbsp;<input type ="text" name="email"/><br/>';
-
-//Haetaan valikkoon tunnistenumero
-$sql = "SELECT oikat FROM istunto_kayttaja";
-
-$oikat = $pdo->query($sql);
-
-    if ($oikat->rowCount() > 0) {
-        echo '<label for="oikat">Käyttöoikeus nro:</label>
-    <select name="oikat">';
-
-        foreach ($oikat as $row) {
-            echo '<option value="' . $row["oikat"] . '">' . $row["oikat"] . '</option>';
-        }
-        echo '<option value="Valitse" selected="selected">Valitse</option></select><br/>';
-    }
-echo '<br/>';
-
-echo '<input type="submit" name="tallenna" value="Tallenna"/>';
-echo '<input type="submit" name="poista" value="Poista"/>';
-
-?>
 <form>
     <div class="col-auto">
         <label class="sr-only" for="inlineFormInputGroup">Käyttäjätunnus</label>
@@ -67,3 +33,38 @@ echo '<input type="submit" name="poista" value="Poista"/>';
     </div>
   </div>
 </form>
+ 
+<?php
+
+require '../../src/modules/header.php';
+require 'db.php';
+
+ $pdo = getPdoConnection();
+
+
+echo '<strong>Käyttäjätunnus:</strong> &nbsp;&nbsp;<input type ="text" name="tunnus"/><br/>';
+
+echo '<strong>Salasana:</strong> &nbsp;&nbsp;<input type ="text" name="salasana"/><br/>';
+
+echo '<strong>Sähköposti:</strong> &nbsp;&nbsp;<input type ="text" name="email"/><br/>';
+
+//Haetaan valikkoon tunnistenumero
+$sql = "SELECT oikat FROM istunto_kayttaja";
+
+$oikat = $pdo->query($sql);
+
+    if ($oikat->rowCount() > 0) {
+        echo '<label for="oikat">Käyttöoikeus nro:</label>
+    <select name="oikat">';
+
+        foreach ($oikat as $row) {
+            echo '<option value="' . $row["oikat"] . '">' . $row["oikat"] . '</option>';
+        }
+        echo '<option value="Valitse" selected="selected">Valitse</option></select><br/>';
+    }
+echo '<br/>';
+
+echo '<input type="submit" name="tallenna" value="Tallenna"/>';
+echo '<input type="submit" name="poista" value="Poista"/>';
+
+?>
