@@ -6,7 +6,7 @@ session_start();
 session_unset();
 session_destroy();
 
-if(isset($_SESSION["username"])){
+if(isset($_SESSION["tunnus"])){
     logout();
     header("Location: logout.php");
 }else{

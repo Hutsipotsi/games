@@ -1,7 +1,7 @@
 <?php
 function login($uname, $pass){
 
-    require_once '../src/modules/db.php';
+    require_once './db.php';
 
     //Tarkistetaan onko muttujia asetettu
     if( !isset($uname) || !isset($pass) ){
@@ -28,7 +28,7 @@ function login($uname, $pass){
         $row = $statement->fetch();
 
         //Tarkistetaan käyttäjän antama salasana tietokannan salasanaa vasten
-        if(!password_verify($pass, $row["salasana"] )){
+        if(!password_verify($pass, $row["password"] )){
             throw new Exception("Väärä salasana!!");
         }
 
