@@ -25,7 +25,7 @@
                         <a class="nav-link active" aria-current="page" href="peli.php">Etusivu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../public/istunto/kayttaja.php">Lisää käyttäjä</a>
+                        <a class="nav-link" href="../public/kayttaja.php">Lisää käyttäjä</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="addgame.php">Lisää peli</a>

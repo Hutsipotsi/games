@@ -19,6 +19,7 @@ function login($uname, $pass){
         $sql = "SELECT * FROM istunto_kayttaja WHERE tunnus=?";
         $statement = $pdo->prepare($sql);
         $statement->bindParam(1, $uname);
+        //$statement->bindParam(2, $oikat);
         $statement->execute();
 
         if($statement->rowCount() <=0){
@@ -33,7 +34,8 @@ function login($uname, $pass){
         }
 
         //Jos käyttäjä tunnistettu, talletetaan käyttäjän tiedot sessioon
-        $_SESSION["tunnus"] = $uname;
+        $_SESSION["tunnus"] = $uname; 
+        //$_SESSION["oikat"] = $oikat;
 
     }catch(PDOException $e){
         throw $e;

@@ -5,7 +5,7 @@ function createGenreDropdown() {
 
     $genres = getGenres();
 
-    echo '<label for="tyylilajit">Tyylilajit: </label>';
+    echo '<label for="tyylilajit" class="col-sm-1 col-form-label">Tyylilajit: </label>';
     echo '<select name="tyylilajit" id="tyylilajit" class="selectpicker" multiple title="Valitse...">';
     foreach($genres as $genre) {
         echo '<option value="' . $genre["id"] . '">' . $genre["tyylilaji"] . '</option>';
@@ -18,12 +18,12 @@ function createConsoleIdDropdown() {
 
     $consoleIDs = getConsoleIDs();
 
-    echo '<label for="konsolitunniste">Konsoli: </label>';
+    echo '<label for="konsolitunniste" class="col-sm-1 col-form-label">Konsoli: </label>';
     echo '<select name="konsolitunniste" id="konsolitunniste" class="dropdown">';
     foreach($consoleIDs as $consoleID) {
         echo '<option value="' . $consoleID["id"] . '">' . $consoleID["malli"] . '</a>';
     }
-    echo '</select>';
+    echo '<option value="Valitse" selected="selected">Valitse konsoli</option></select>';
 
 }
 

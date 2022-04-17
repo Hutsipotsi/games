@@ -10,29 +10,30 @@ $konsolitunniste = filter_input(INPUT_POST, "konsolitunniste");
     
 if(isset($pelin_nimi)) {
     addGame($pelin_nimi, $tyylilajit, $ikasuositus, $konsolitunniste);
-    echo '<div class="alert alert-success" role="alert">Game added.</div>';
+    echo '<div class="alert alert-success" role="alert">Peli ' .$pelin_nimi. ' lisätty tietokantaan.</div>';
 }
 
 ?>
 
-<h3>Lisää peli</h3>
+<h4>Lisää peli</h4>
 
 <form action="addgame.php" method="post">
     <div class="form-group mb-2">
-        <label for="pelin_nimi">Pelin nimi: </label>
-        <input type="text" name="pelin_nimi" id="pelin_nimi" placeholder="Lisää...">
+        <label for="pelin_nimi" class="col-sm-1 col-form-label">Pelin nimi: </label>
+        <input type="text" name="pelin_nimi" id="pelin_nimi" placeholder="Peli">
     </div>
     <div class="form-group mb-2">
         <?php createGenreDropdown(); ?>
     </div>
     <div class="form-group mb-2">
-        <label for="ikasuositus">Ikäsuositus: </label>
+        <label for="ikasuositus" class="col-sm-1 col-form-label">Ikäsuositus: </label>
         <input type="number" name="ikasuositus" id="ikasuositus" value="0" min="0" max="18" step="1">
     </div>
     <div class="form-group mb-2">
         <?php createConsoleIdDropdown(); ?>
     </div>
-    <button type="submit" class="btn btn-primary">Lisää</button>
+    <button type="submit" class="btn btn-primary" value="tallenna">Lisää</button>
+    <button type="submit" class="btn btn-primary" value="poista">Poista</button>
 </form>
 
 <?php include TEMPLATES_DIR . 'footer.php'; ?>

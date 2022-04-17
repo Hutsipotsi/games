@@ -1,8 +1,8 @@
 
 <?php
-    require '../src/modules/db.php';
+    require 'src/modules/db.php';
 
-    include TEMPLATES_DIR . 'header.php';
+    include 'src/templates/header.php';
 
     $pdo = getPdoConnection();
 

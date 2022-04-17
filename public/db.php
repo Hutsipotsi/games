@@ -2,7 +2,7 @@
 
 //Tässä haetaan tiedot init-tiedostosta. 
 function getPdoConnection() {
-$init = parse_ini_file("../../myconf.ini");
+$init = parse_ini_file("../myconf.ini");
 $host = $init["host"];
 $db = $init["db"];
 $user = $init["username"];

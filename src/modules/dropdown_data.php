@@ -21,7 +21,7 @@ function getConsoleIDs() {
     try{
         $pdo = getPdoConnection();
 
-        $sql = "SELECT * FROM konsolitunniste ORDER BY malli asc";
+        $sql = "SELECT * FROM konsolitunniste WHERE malli NOT LIKE '%Hero%' AND malli NOT LIKE '%Groud%' AND malli NOT LIKE '%Micro%' AND malli NOT LIKE '%One%' ORDER BY malli asc";
         $consoleIDs = $pdo->query($sql);
 
         return $consoleIDs->fetchAll();
