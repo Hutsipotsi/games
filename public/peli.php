@@ -12,7 +12,7 @@
     $pvalmistaja = $pdo->query($sql);
 
     if ($pvalmistaja->rowCount() > 0) {
-        echo '<label for="valmistaja">Pelit valmistajittain:</label>
+        echo '<label for="valmistaja" class="col-sm-2 col-form-label">Pelit valmistajittain:</label>
     <select name="pvalmistaja">';
 
         foreach ($pvalmistaja as $row) {
@@ -29,7 +29,7 @@
     $pmalli = $pdo->query($sql);
 
     if ($pmalli->rowCount() > 0) {
-        echo '<label for="malli">Pelit konsoleittain:</label>
+        echo '<label for="malli" class="col-sm-2 col-form-label">Pelit konsoleittain:</label>
     <select name="pmalli">';
 
         foreach ($pmalli as $row) {
@@ -46,7 +46,7 @@
     $genre = $pdo->query($sql);
 
     if ($genre->rowCount() > 0) {
-        echo '<label for="tyylilaji">Pelit tyylilajeittain:</label>
+        echo '<label for="tyylilaji" class="col-sm-2 col-form-label">Pelit tyylilajeittain:</label>
     <select name="tyylilaji">';
 
         foreach ($genre as $row) {
@@ -63,7 +63,7 @@
     $konsoli = $pdo->query($sql);
 
     if ($konsoli->rowCount() > 0) {
-        echo '<label for="konsoli">Konsolit:</label>
+        echo '<label for="konsoli" class="col-sm-2 col-form-label">Konsolit:</label>
     <select name="konsoli">';
 
         foreach ($konsoli as $row) {
@@ -74,9 +74,9 @@
 
     echo '<br/>';
 
-    echo '<strong>Nimihaku:</strong> &nbsp;&nbsp;<input type ="text" name="pelin_nimi"/>';
+    echo '<label for="nimihaku" class="col-sm-2 col-form-label">Nimihaku:</label><input type ="text" name="pelin_nimi"/>';
 
-    echo '<input type="submit" name="submit" value="Hae"/>';
+    echo '<div class="col-sm-2 "><input type="submit" name="submit" value="Hae"/></div>';
 
     include TEMPLATES_DIR . 'footer.php';
 ?>

@@ -5,12 +5,12 @@ function login($uname, $pass){
 
     //Tarkistetaan onko muttujia asetettu
     if( !isset($uname) || !isset($pass) ){
-        throw new Exception("Missing parameters. Cannot log in.");
+        throw new Exception("Pakollisia tietoja puuttuu, ei voi kirjautua.");
     }
 
     //Tarkistetaan, ettei tyhjiä arvoja muuttujissa
     if( empty($uname) || empty($pass) ){
-        throw new Exception("Cannot log in with empty values.");
+        throw new Exception("Kirjautumistiedot eivät voi olla tyhjät.");
     }
 
     try{

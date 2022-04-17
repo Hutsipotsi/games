@@ -20,11 +20,20 @@ if (!isset($_SESSION["tunnus"])) {
 ?>
 
     <form action="login.php" method="post">
-        <label for="tunnus">Tunnus:</label><br>
-        <input type="text" name="tunnus" id="tunnus"><br>
-        <label for="salasana">Salasana:</label><br>
-        <input type="password" name="salasana" id="salasana"><br>
-        <input type="submit" class="btn btn-primary" value="Log in">
+    <div class="form-group row">
+        <label for="tunnus" class="col-sm-1 col-form-label">Tunnus:</label>
+        <div class="col-sm-4">
+        <input type="text" name="tunnus" id="tunnus">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="salasana" class="col-sm-1 col-form-label">Salasana:</label>
+        <div class="col-sm-4">
+        <input type="password" name="salasana" id="salasana">
+        </div>
+        <div class="form-group row">
+        <input type="submit" class="btn btn-primary col-sm-1 col-form-label" value="Kirjaudu">
+        </div>
     </form>
 
 

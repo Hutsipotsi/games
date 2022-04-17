@@ -1,6 +1,6 @@
 
 <?php
-    require 'src/modules/db.php';
+    require 'public/db.php';
 
     include 'src/templates/header.php';
 
