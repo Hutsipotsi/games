@@ -11,5 +11,6 @@ if(isset($_SESSION["tunnus"])){
     header("Location: logout.php");
 }else{
     echo '<div class="alert alert-success" role="alert">Logged out!!</div>';
+    header("Location: peli.php");
 }
 ?>
