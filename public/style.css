@@ -27,7 +27,6 @@
 .welcome {
     color: white;
     font-style: italic;
-    /*text-align: right;
-    float: inline-end;*/
-    float: right;
+    text-align: right;
+    padding-right: 40px;
 }

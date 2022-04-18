@@ -3,9 +3,6 @@
 include TEMPLATES_DIR . 'header.php';
 include MODULES_DIR . 'addkayttaja.php';
 
-echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'],'</div>';
-
-
     $uname = filter_input(INPUT_POST, "tunnus");
     $email = filter_input(INPUT_POST, "email");
     $oikat = filter_input(INPUT_POST, "oikat");
