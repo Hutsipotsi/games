@@ -1,6 +1,7 @@
 <?php
-include  '../src/templates/header.php';
-include '../src/modules/authorization.php';
+include TEMPLATES_DIR . 'header.php';
+include MODULES_DIR . 'authorization.php';
+
 
 $uname = filter_input(INPUT_POST, "tunnus");
 $pass = filter_input(INPUT_POST, "salasana");
@@ -32,9 +33,9 @@ if (!isset($_SESSION["tunnus"])) {
         <input type="password" name="salasana" id="salasana">
         </div>
         <div class="form-group row">
-        <input type="submit" class="btn btn-primary col-sm-1 col-form-label" value="Kirjaudu">
+        <input type="submit" class="btn btn-secondary col-sm-1 col-form-label" value="Kirjaudu">
         </div>
     </form>
 
 
-<?php } ?>
+<?php } include TEMPLATES_DIR . 'footer.php'; ?>

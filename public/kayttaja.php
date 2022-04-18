@@ -5,6 +5,7 @@ include MODULES_DIR . 'addkayttaja.php';
 
 echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'],'</div>';
 
+
     $uname = filter_input(INPUT_POST, "tunnus");
     $email = filter_input(INPUT_POST, "email");
     $oikat = filter_input(INPUT_POST, "oikat");
@@ -60,9 +61,10 @@ echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'],'</div>';
   </div>
   <div class="form-group row">
   <div class="col-sm-2">
-    <button type="submit" value="tallenna" class="btn btn-primary">Tallenna</button>
-    <button type="submit" value="poista" class="btn btn-primary">Poista</button>
+    <button type="submit" value="tallenna" class="btn btn-secondary">Tallenna</button>
+    <button type="submit" value="poista" class="btn btn-secondary">Poista</button>
   </div>
 </div>
 </form>
+<?php include TEMPLATES_DIR . 'footer.php'; ?>
  

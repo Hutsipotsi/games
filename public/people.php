@@ -1,6 +1,5 @@
 <?php
-include "../../src/templates/header.php";
-include "kayttaja.php";
+include PUBLIC_DIR . 'kayttaja.php';
 
 
 $people = getPeople();
