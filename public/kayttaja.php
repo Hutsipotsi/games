@@ -3,16 +3,19 @@
 include TEMPLATES_DIR . 'header.php';
 include MODULES_DIR . 'addkayttaja.php';
 
+echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'],'</div>';
 
     $uname = filter_input(INPUT_POST, "tunnus");
     $email = filter_input(INPUT_POST, "email");
     $oikat = filter_input(INPUT_POST, "oikat");
     $pw = filter_input(INPUT_POST, "password");
+    $submit = filter_input(INPUT_POST, "submit");
+    //$poista = filter_input(INPUT_POST, "poista");
 
     if(isset($uname)){
         try{
             addPerson($uname, $email, $oikat, $pw);
-            echo '<div class="alert alert-success" role="alert">Person added!!</div>';
+            echo '<div class="alert alert-success" role="alert">Käyttäjä ' .$uname. ' lisätty!!</div>';
         }catch(Exception $e){
             echo '<div class="alert alert-danger" role="alert">'.$e->getMessage().'</div>';
 

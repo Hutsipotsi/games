@@ -35,7 +35,8 @@ function login($uname, $pass){
 
         //Jos käyttäjä tunnistettu, talletetaan käyttäjän tiedot sessioon
         $_SESSION["tunnus"] = $uname; 
-        //$_SESSION["oikat"] = $oikat;
+        $_SESSION["oikat"] = $admin;
+        $_SESSION["id"] = $id;
 
     }catch(PDOException $e){
         throw $e;

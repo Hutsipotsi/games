@@ -3,6 +3,8 @@ include TEMPLATES_DIR . 'header.php';
 include TEMPLATES_DIR . 'dropdowns.php';
 include MODULES_DIR . 'addgame.php';
 
+echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'],'</div>';
+
 $pelin_nimi = filter_input(INPUT_POST, "pelin_nimi", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $tyylilajit[] = filter_input(INPUT_POST, "tyylilajit");
 $ikasuositus = filter_input(INPUT_POST, "ikasuositus", FILTER_SANITIZE_FULL_SPECIAL_CHARS);

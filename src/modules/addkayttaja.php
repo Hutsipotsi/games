@@ -19,6 +19,23 @@ function getPeople(){
 function addPerson($uname, $email, $oikat, $pw){
     require_once 'db.php'; // DB connection
 
+    if ($_POST=="tallenna" AND $admin=="1") {
+        $sql = "SELECT * FROM istunto_kayttaja where tunnus = '$uname'";
+        $tarkistatuplat = $pdo->query($sql);
+        $loytyi = mysqli_fetch_row($tarkistatuplat);
+        //$user = $tarkistatuplat->fetch();
+    }
+
+    if ($loytyi) {
+        echo '<div class="alert alert-warning" role="alert">Tunnus on jo olemassa, anna uusi.></div>';
+        exit;
+    }
+
+//Tarkistetaan, onko oikeuksia lisätä käyttäjiä
+if ($admin!="1") {
+    echo "Sinulla ei ole oikeuksia lisätä käyttäjiä!!";
+    exit;
+}
     //Tarkistetaan onko muttujia asetettu
     if( !isset($uname) || !isset($email) || !isset($oikat) || !isset($pw) ){
         echo "Parametreja puuttui!! Ei voida lisätä henkilöä";
@@ -31,11 +48,7 @@ function addPerson($uname, $email, $oikat, $pw){
         exit;
     }
 
-    //Tarkistetaan, onko oikeuksia lisätä käyttäjiä
-    if( $oikat > 1) {
-        echo "Sinulla ei ole oikeuksia lisätä käyttäjiä!!";
-        exit;
-    }
+    
     try{
         $pdo = getPdoConnection();
         //Suoritetaan parametrien lisääminen tietokantaan.

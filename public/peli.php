@@ -3,7 +3,9 @@
     require '../src/modules/db.php';
 
     include TEMPLATES_DIR . 'header.php';
-
+    
+    echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'],'</div>';
+    
     $pdo = getPdoConnection();
 
     //Haetaan valikkoon lista valmistajista

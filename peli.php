@@ -74,9 +74,9 @@
 
     echo '<br/>';
 
-    echo '<strong>Nimihaku:</strong> &nbsp;&nbsp;<input type ="text" name="pelin_nimi"/>';
+    echo '<label for="nimihaku" class="col-sm-2 col-form-label">Nimihaku:</label><input type ="text" name="pelin_nimi"/>';
 
-    echo '<input type="submit" name="submit" value="Hae"/>';
+    echo '<div class="col-sm-2 "><input type="submit" name="submit" value="Hae"/></div>';
 
     include TEMPLATES_DIR . 'footer.php';
 ?>
