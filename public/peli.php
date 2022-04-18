@@ -3,8 +3,7 @@
     require '../src/modules/db.php';
 
     include TEMPLATES_DIR . 'header.php';
-    
-    echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'],'</div>';
+    include TEMPLATES_DIR . 'konsolit_table.php';
     
     $pdo = getPdoConnection();
 

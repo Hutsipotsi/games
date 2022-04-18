@@ -24,3 +24,10 @@
     width: 10%;
     height: 75vh; /* only for demonstration, should be removed */padding: 20px;
 }
+.welcome {
+    color: white;
+    font-style: italic;
+    /*text-align: right;
+    float: inline-end;*/
+    float: right;
+}

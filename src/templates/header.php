@@ -39,6 +39,8 @@
                         }
                         ?>
                     </li>
+
+                <?php echo '<div class="welcome" color: "white">Tervetuloa ' .$_SESSION['tunnus'],'</div>';?>
                 </ul>
             </div>
         </div>
