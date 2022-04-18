@@ -1,6 +1,6 @@
 <?php
 
-include '../src/modules/authorization.php';
+include MODULES_DIR . 'authorization.php';
 
 session_start();
 session_unset();

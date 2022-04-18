@@ -1,7 +1,6 @@
 
 <?php
-    require '../src/modules/db.php';
-
+    INCLUDE MODULES_DIR . 'db.php';
     include TEMPLATES_DIR . 'header.php';
 
     $pdo = getPdoConnection();

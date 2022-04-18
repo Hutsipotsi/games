@@ -33,9 +33,9 @@
                     <li class="nav-item">
                         <?php
                         if (!isset($_SESSION["tunnus"])) {
-                            echo '<a class="nav-link bg-success" href="login.php">Kirjaudu sisään</a>';
+                            echo '<a class="nav-link bg-dark" href="login.php">Kirjaudu sisään</a>';
                         } else {
-                            echo '<a class="nav-link bg-danger" href="logout.php">Kirjaudu ulos</a>';
+                            echo '<a class="nav-link bg-dark" href="logout.php">Kirjaudu ulos</a>';
                         }
                         ?>
                     </li>
