@@ -48,9 +48,6 @@ if ($admin!="1") {
         exit;
     }
 
-<<<<<<< HEAD
-    
-=======
     //Tarkistetaan, onko oikeuksia lisätä käyttäjiä
     if( $oikat > 1) {
         echo "Sinulla ei ole oikeuksia lisätä käyttäjiä!!";
@@ -59,7 +56,6 @@ if ($admin!="1") {
 
     $pdo = getPdoConnection();
 
->>>>>>> eaa30ba3a46440de11ede5363e0d37f11637a2ea
     try{
         $pdo->beginTransaction();
 
