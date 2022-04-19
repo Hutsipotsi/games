@@ -48,9 +48,21 @@ if ($admin!="1") {
         exit;
     }
 
+<<<<<<< HEAD
     
+=======
+    //Tarkistetaan, onko oikeuksia lisätä käyttäjiä
+    if( $oikat > 1) {
+        echo "Sinulla ei ole oikeuksia lisätä käyttäjiä!!";
+        exit;
+    }
+
+    $pdo = getPdoConnection();
+
+>>>>>>> eaa30ba3a46440de11ede5363e0d37f11637a2ea
     try{
-        $pdo = getPdoConnection();
+        $pdo->beginTransaction();
+
         //Suoritetaan parametrien lisääminen tietokantaan.
         $sql = "INSERT INTO istunto_kayttaja (tunnus, email, oikat, password) VALUES (?, ?, ?, ?)";
         $statement = $pdo->prepare($sql);
@@ -62,10 +74,38 @@ if ($admin!="1") {
         $statement->bindParam(4, $hash_pw);
 
         $statement->execute();
-
+        $pdo->commit();
         echo "Tervetuloa ".$uname." . Sinut on lisätty tietokantaan"; 
+        
     }catch(PDOException $e){
+        $pdo->rollback();
         echo "Käyttäjää ei voitu lisätä<br>";
         echo $e->getMessage();
+    }
+}
+
+function deletePerson($id){
+    require_once MODULES_DIR.'db.php'; // DB connection
+    
+    //Tarkistetaan onko muttujia asetettu
+    if( !isset($id) ){
+        throw new Exception("Missing parameters! Cannot delete person!");
+    }
+    
+    try{
+        $pdo = getPdoConnection();
+        // Start transaction
+        $pdo->beginTransaction();
+        // Delete from worktime table
+        $sql = "DELETE FROM istunto_kayttaja WHERE id = ?";
+        $statement = $pdo->prepare($sql);
+        $statement->bindParam(1, $id);        
+        $statement->execute();
+        // Commit transaction
+        $pdo->commit();
+    }catch(PDOException $e){
+        // Rollback transaction on error
+        $pdo->rollBack();
+        throw $e;
     }
 }

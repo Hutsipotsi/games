@@ -13,14 +13,18 @@ function login($uname, $pass){
         throw new Exception("Kirjautumistiedot eivät voi olla tyhjät.");
     }
 
+    $pdo = getPdoConnection();
+
     try{
-        $pdo = getPdoConnection();
+        $pdo->beginTransaction();
+
         //Haetaan käyttäjä annetulla käyttäjänimellä
-        $sql = "SELECT * FROM istunto_kayttaja WHERE tunnus=?";
+        $sql = "SELECT tunnus, email, oikat, password FROM istunto_kayttaja WHERE tunnus=?";
         $statement = $pdo->prepare($sql);
         $statement->bindParam(1, $uname);
         $statement->execute();
-
+        $pdo->commit();
+        
         if($statement->rowCount() <=0){
             throw new Exception("Käyttäjää ei löytynyt!");
         }
@@ -34,10 +38,15 @@ function login($uname, $pass){
 
         //Jos käyttäjä tunnistettu, talletetaan käyttäjän tiedot sessioon
         $_SESSION["tunnus"] = $uname; 
+<<<<<<< HEAD
         $_SESSION["oikat"] = $admin;
         $_SESSION["id"] = $id;
 
+=======
+        //$_SESSION["oikat"] = $oikat;
+>>>>>>> eaa30ba3a46440de11ede5363e0d37f11637a2ea
     }catch(PDOException $e){
+        $pdo->rollback();
         throw $e;
     }
 
