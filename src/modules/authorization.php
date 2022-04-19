@@ -24,7 +24,8 @@ function login($uname, $pass){
         $statement->bindParam(1, $uname);
         //$statement->bindParam(2, $oikat);
         $statement->execute();
-
+        $pdo->commit();
+        
         if($statement->rowCount() <=0){
             throw new Exception("Käyttäjää ei löytynyt!");
         }
@@ -39,7 +40,6 @@ function login($uname, $pass){
         //Jos käyttäjä tunnistettu, talletetaan käyttäjän tiedot sessioon
         $_SESSION["tunnus"] = $uname; 
         //$_SESSION["oikat"] = $oikat;
-        $pdo->commit();
     }catch(PDOException $e){
         $pdo->rollback();
         throw $e;
