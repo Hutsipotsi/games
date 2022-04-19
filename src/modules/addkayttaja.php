@@ -36,8 +36,12 @@ function addPerson($uname, $email, $oikat, $pw){
         echo "Sinulla ei ole oikeuksia lisätä käyttäjiä!!";
         exit;
     }
+
+    $pdo = getPdoConnection();
+
     try{
-        $pdo = getPdoConnection();
+        $pdo->beginTransaction();
+
         //Suoritetaan parametrien lisääminen tietokantaan.
         $sql = "INSERT INTO istunto_kayttaja (tunnus, email, oikat, password) VALUES (?, ?, ?, ?)";
         $statement = $pdo->prepare($sql);
@@ -51,7 +55,9 @@ function addPerson($uname, $email, $oikat, $pw){
         $statement->execute();
 
         echo "Tervetuloa ".$uname." . Sinut on lisätty tietokantaan"; 
+        $pdo->commit();
     }catch(PDOException $e){
+        $pdo->rollback();
         echo "Käyttäjää ei voitu lisätä<br>";
         echo $e->getMessage();
     }

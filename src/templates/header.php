@@ -25,17 +25,21 @@
                         <a class="nav-link active" aria-current="page" href="peli.php">Etusivu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../public/kayttaja.php">Lisää käyttäjä</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="addgame.php">Lisää peli</a>
-                    </li>
-                    <li class="nav-item">
+
                         <?php
                         if (!isset($_SESSION["tunnus"])) {
                             echo '<a class="nav-link bg-dark" href="login.php">Kirjaudu sisään</a>';
                         } else {
-                            echo '<a class="nav-link bg-dark" href="logout.php">Kirjaudu ulos</a>';
+                          ?>
+                            <li class="nav-item">
+                                 <a class="nav-link" href="../public/kayttaja.php">Lisää käyttäjä</a>
+                             </li>
+                            <li class="nav-item">
+                                 <a class="nav-link" href="addgame.php">Lisää peli</a>
+                             </li>
+                         <?php
+                              echo '<a class="nav-link bg-dark" href="logout.php">Kirjaudu ulos</a>';   
+
                         }
                         ?>
                     </li>
