@@ -2,16 +2,16 @@
 include PUBLIC_DIR . 'kayttaja.php';
 
 
-$tunnus = filter_input(INPUT_GET, "tunnus");
+$id = filter_input(INPUT_GET, "id");
 // If id parameter exists -> delete
-if(isset($tunnus)){
+if(isset($id)){
     try{
-        deletePerson($tunnus);
-        echo '<div class="alert alert-success" role="alert">Person deleted!!</div>';
+        deletePerson($id);
+      
     }catch(Exception $e){
         echo '<div class="alert alert-danger" role="alert">'.$e->getMessage().'</div>';
     }
-    
+
 }
 
 $people = getPeople();
