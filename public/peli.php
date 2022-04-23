@@ -3,7 +3,10 @@
     INCLUDE MODULES_DIR . 'db.php';
     include TEMPLATES_DIR . 'header.php';
     include TEMPLATES_DIR . 'konsolit_table.php';
+    include TEMPLATES_DIR . 'konsolit.php';
+
     
+
     $pdo = getPdoConnection();
 
     //Haetaan valikkoon lista valmistajista
@@ -63,20 +66,22 @@
     $konsoli = $pdo->query($sql);
 
     if ($konsoli->rowCount() > 0) {
-        echo '<label for="konsoli" class="col-sm-2 col-form-label">Konsolit:</label>
+        echo '<form method="post"><label for="konsoli" class="col-sm-2 col-form-label">Konsolit:</label>
     <select name="konsoli">';
 
         foreach ($konsoli as $row) {
             echo '<option value="' . $row["valmistaja"] . '">' . $row["valmistaja"] . '</option>';
         }
-        echo '<option value="pelikonsoli">Pelikonsolit</option><option value="kasikonsoli">Käsikonsolit</option><option value="konsoli">Kaikki</option><option value="Valitse" selected="selected">Valitse</option></select><br/>';
+        echo '<option value="pelikonsoli">Pelikonsolit</option><option value="kasikonsoli">Käsikonsolit</option><option value="konsoli">Kaikki</option><option value="Valitse" selected="selected">Valitse</option></select></form>';
     }
 
     echo '<br/>';
 
     echo '<label for="nimihaku" class="col-sm-2 col-form-label">Nimihaku:</label><input type ="text" name="pelin_nimi"/>';
 
-    echo '<div class="col-sm-2 "><input type="submit" name="submit" value="Hae"/></div>';
+    echo '<form method="post"><div class="col-sm-2 "><input type="submit" name="Hae" value="Hae"/></form></div>';
+
+
 
     include TEMPLATES_DIR . 'footer.php';
 ?>

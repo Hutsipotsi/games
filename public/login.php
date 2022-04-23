@@ -5,11 +5,12 @@ include MODULES_DIR . 'authorization.php';
 
 $uname = filter_input(INPUT_POST, "tunnus");
 $pass = filter_input(INPUT_POST, "salasana");
+$admin = filter_input(INPUT_POST, "oikat");
 
 if (!isset($_SESSION["tunnus"]) && isset($uname)) {
 
     try {
-        login($uname, $pass);
+        login($uname, $pass, $admin);
         header("Location: peli.php");
         exit;
     } catch (Exception $e) {
@@ -35,6 +36,7 @@ if (!isset($_SESSION["tunnus"])) {
         <div class="form-group row">
         <input type="submit" class="btn btn-secondary col-sm-1 col-form-label" value="Kirjaudu">
         </div>
+    </div>
     </form>
 
 

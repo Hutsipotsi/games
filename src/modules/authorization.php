@@ -1,5 +1,5 @@
 <?php
-function login($uname, $pass){
+function login($uname, $pass, $admin){
 
     require_once './db.php';
 
@@ -19,9 +19,10 @@ function login($uname, $pass){
         $pdo->beginTransaction();
 
         //Haetaan käyttäjä annetulla käyttäjänimellä
-        $sql = "SELECT tunnus, email, oikat, password FROM istunto_kayttaja WHERE tunnus=?";
+        $sql = "SELECT tunnus, password, oikat FROM istunto_kayttaja WHERE tunnus=?";
         $statement = $pdo->prepare($sql);
         $statement->bindParam(1, $uname);
+        //$statement->bindParam(2, $admin);
         $statement->execute();
         $pdo->commit();
         
@@ -38,7 +39,8 @@ function login($uname, $pass){
 
         //Jos käyttäjä tunnistettu, talletetaan käyttäjän tiedot sessioon
         $_SESSION["tunnus"] = $uname; 
-       //$_SESSION["oikat"] = $oikat;
+        $_SESSION["oikat"] = $admin;
+
     }catch(PDOException $e){
         $pdo->rollback();
         throw $e;

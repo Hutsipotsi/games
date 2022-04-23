@@ -7,18 +7,10 @@ include MODULES_DIR . 'addkayttaja.php';
     $email = filter_input(INPUT_POST, "email");
     $oikat = filter_input(INPUT_POST, "oikat");
     $pw = filter_input(INPUT_POST, "password");
-    $submit = filter_input(INPUT_POST, "submit");
-    //$poista = filter_input(INPUT_POST, "poista");
+    $tallenna = filter_input(INPUT_POST, "tallenna");
+    $poista = filter_input(INPUT_POST, "poista");
 
-    if(isset($uname)){
-        try{
-            addPerson($uname, $email, $oikat, $pw);
-            echo '<div class="alert alert-success" role="alert">Käyttäjä ' .$uname. ' lisätty!!</div>';
-        }catch(Exception $e){
-            echo '<div class="alert alert-danger" role="alert">'.$e->getMessage().'</div>';
-
-        }
-      }
+    
 ?>
 
 <form method="post">
@@ -58,8 +50,8 @@ include MODULES_DIR . 'addkayttaja.php';
   </div>
   <div class="form-group row">
   <div class="col-sm-2">
-    <button type="submit" value="tallenna" class="btn btn-secondary">Tallenna</button>
-    <button type="submit" value="poista" class="btn btn-secondary">Poista</button>
+    <button type="submit" name="tallenna" value="tallenna" class="btn btn-secondary">Tallenna</button>
+    <button type="poista" name="poista" value="poista" class="btn btn-secondary">Poista</button>
   </div>
 </div>
 </form>

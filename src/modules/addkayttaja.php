@@ -1,5 +1,13 @@
 <?php
 
+$uname = filter_input(INPUT_POST, "tunnus");
+$email = filter_input(INPUT_POST, "email");
+$oikat = filter_input(INPUT_POST, "oikat");
+$pw = filter_input(INPUT_POST, "password");
+$tallenna = filter_input(INPUT_POST, "tallenna");
+$poista = filter_input(INPUT_POST, "poista");
+
+
 function getPeople(){
     require_once 'db.php';
 
@@ -16,41 +24,25 @@ function getPeople(){
     }
 }
 
+if(array_key_exists('tallenna', $_POST)) {
+    addPerson($uname, $email, $oikat, $pw);
+}
+else if(array_key_exists('poista', $_POST)) {
+    deletePerson($uname);
+}
+
 function addPerson($uname, $email, $oikat, $pw){
     require_once 'db.php'; // DB connection
 
-    if ($_POST=="tallenna" AND $admin=="1") {
-        $sql = "SELECT * FROM istunto_kayttaja where tunnus = '$uname'";
-        $tarkistatuplat = $pdo->query($sql);
-        $loytyi = mysqli_fetch_row($tarkistatuplat);
-        //$user = $tarkistatuplat->fetch();
-    }
-
-    if ($loytyi) {
-        echo '<div class="alert alert-warning" role="alert">Tunnus on jo olemassa, anna uusi.></div>';
-        exit;
-    }
-
-//Tarkistetaan, onko oikeuksia lisätä käyttäjiä
-if ($admin!="1") {
-    echo "Sinulla ei ole oikeuksia lisätä käyttäjiä!!";
-    exit;
-}
     //Tarkistetaan onko muttujia asetettu
     if( !isset($uname) || !isset($email) || !isset($oikat) || !isset($pw) ){
-        echo "Parametreja puuttui!! Ei voida lisätä henkilöä";
+        echo "Tietoja puuttui. Täytä kaikki kentät!! Ei voida lisätä henkilöä";
         exit;
     }
 
     //Tarkistetaan, ettei tyhjiä arvoja muuttujissa
-    if( empty($uname) || empty($email) || empty($oikat) || empty($pw) ){
+    if( empty($uname) || empty($email) || $oikat === 'Valitse oikeustaso' || empty($pw) ){
         echo "Et voi asettaa tyhjiä arvoja!!";
-        exit;
-    }
-
-    //Tarkistetaan, onko oikeuksia lisätä käyttäjiä
-    if( $oikat > 1) {
-        echo "Sinulla ei ole oikeuksia lisätä käyttäjiä!!";
         exit;
     }
 
@@ -71,7 +63,7 @@ if ($admin!="1") {
 
         $statement->execute();
         $pdo->commit();
-        echo "Tervetuloa ".$uname." . Sinut on lisätty tietokantaan"; 
+        echo '<div class="alert alert-success" role="alert">Käyttäjä ' .$uname. ' lisätty!!</div>';
         
     }catch(PDOException $e){
         $pdo->rollback();
@@ -80,12 +72,13 @@ if ($admin!="1") {
     }
 }
 
-function deletePerson($id){
+function deletePerson($uname){
     require_once MODULES_DIR.'db.php'; // DB connection
     
     //Tarkistetaan onko muttujia asetettu
-    if( !isset($id) ){
-        throw new Exception("Missing parameters! Cannot delete person!");
+    if($_POST=== 'tallenna' || empty($uname) ){
+        echo '<div class="alert alert-danger" role="alert">Käyttäjätunnus puuttuu! Henkilöä ei voi poistaa!</div>';
+        exit;
     }
     
     try{
@@ -93,12 +86,14 @@ function deletePerson($id){
         // Start transaction
         $pdo->beginTransaction();
         // Delete from worktime table
-        $sql = "DELETE FROM istunto_kayttaja WHERE id = ?";
+        $sql = "DELETE FROM istunto_kayttaja WHERE tunnus = ?";
         $statement = $pdo->prepare($sql);
-        $statement->bindParam(1, $id);        
+        $statement->bindParam(1, $uname);        
         $statement->execute();
         // Commit transaction
         $pdo->commit();
+        echo '<div class="alert alert-success" role="alert">Käyttäjä ' .$uname. ' poistettu!!</div>';
+
     }catch(PDOException $e){
         // Rollback transaction on error
         $pdo->rollBack();

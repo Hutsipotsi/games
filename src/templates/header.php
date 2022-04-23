@@ -38,13 +38,12 @@
                                  <a class="nav-link" href="addgame.php">Lisää peli</a>
                              </li>
                          <?php
-                              echo '<a class="nav-link bg-dark" href="logout.php">Kirjaudu ulos</a>';   
-
+                              echo '<a class="nav-link bg-dark" href="logout.php">Kirjaudu ulos</a>';
                         }
                         ?>
                     </li>
                     </ul>                
             </div>
-            <?php echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'],'</div>';?>
+            <?php echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'].'</div>'; echo '<div class="welcome">' .$_SESSION['oikat'].'</div>';?> 
         </div>
     </nav>
