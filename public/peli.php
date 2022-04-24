@@ -3,7 +3,8 @@
     INCLUDE MODULES_DIR . 'db.php';
     include TEMPLATES_DIR . 'header.php';
     //include TEMPLATES_DIR . 'konsolit_table.php';
-    include TEMPLATES_DIR . 'konsolit.php';
+    include TEMPLATES_DIR . 'konsolihaku.php';
+    include TEMPLATES_DIR . 'nimihaku.php';
 
     
 
@@ -24,7 +25,6 @@
         echo '<option value="Valitse" selected="selected">Valitse</option></select><br/>';
     }
 
-    echo '<br/>';
 
     //Haetaan valikkoon lista konsoleista
     $sql = "SELECT DISTINCT malli FROM konsolitunniste WHERE malli NOT LIKE '%Hero%' AND malli NOT LIKE '%Groud%' AND malli NOT LIKE '%Micro%' AND malli NOT LIKE '%One%' ORDER BY malli asc";
@@ -41,7 +41,6 @@
         echo '<option value="Valitse" selected="selected">Valitse</option></select><br/>';
     }
 
-    echo '<br/>';
 
     //Haetaan valikkoon tyylilajit
     $sql = "SELECT DISTINCT tyylilaji FROM genre ORDER BY tyylilaji asc";
@@ -58,7 +57,6 @@
         echo '<option value="Valitse" selected="selected">Valitse</option></select><br/>';
     }
 
-    echo '<br/>';
 
     //Haetaan valikkoon lista valmistajista
     $sql = "SELECT DISTINCT valmistaja FROM konsolitunniste WHERE malli NOT LIKE '%PC%' ORDER BY valmistaja asc";
@@ -75,9 +73,8 @@
         echo '<option value="pelikonsoli">Pelikonsolit</option><option value="kasikonsoli">Käsikonsolit</option><option value="konsoli">Kaikki</option><option value="Valitse" selected="selected">Valitse</option></select></form>';
     }
 
-    echo '<br/>';
 
-    echo '<label for="nimihaku" class="col-sm-2 col-form-label">Nimihaku:</label><input type ="text" name="pelin_nimi"/>';
+    echo '<form method="post"><label for="nimihaku" class="col-sm-2 col-form-label">Nimihaku:</label><input type ="text" name="pelin_nimi"/></form>';
 
     echo '<form method="post"><div class="col-sm-2 "><input type="submit" name="Hae" value="Hae"/></form></div>';
 

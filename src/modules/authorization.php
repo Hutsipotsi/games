@@ -22,7 +22,7 @@ function login($uname, $pass, $oikat){
         $sql = "SELECT tunnus, password, oikat FROM istunto_kayttaja WHERE tunnus=?";
         $statement = $pdo->prepare($sql);
         $statement->bindParam(1, $uname);
-        $statement->bindParam(2, $oikat);
+        //$statement->bindParam(2, $oikat);
         $statement->execute();
         $pdo->commit();
         
