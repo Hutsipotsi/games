@@ -2,7 +2,7 @@
 <?php
     INCLUDE MODULES_DIR . 'db.php';
     include TEMPLATES_DIR . 'header.php';
-    include TEMPLATES_DIR . 'konsolit_table.php';
+    //include TEMPLATES_DIR . 'konsolit_table.php';
     include TEMPLATES_DIR . 'konsolit.php';
 
     

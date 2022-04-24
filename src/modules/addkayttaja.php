@@ -34,6 +34,11 @@ else if(array_key_exists('poista', $_POST)) {
 function addPerson($uname, $email, $oikat, $pw){
     require_once 'db.php'; // DB connection
 
+    if ($oikat!="1") {
+        echo "Sinulla ei ole oikeuksia lisätä käyttäjiä!!";
+        exit;
+    }
+
     //Tarkistetaan onko muttujia asetettu
     if( !isset($uname) || !isset($email) || !isset($oikat) || !isset($pw) ){
         echo "Tietoja puuttui. Täytä kaikki kentät!! Ei voida lisätä henkilöä";

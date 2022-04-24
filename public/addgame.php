@@ -32,8 +32,9 @@ if(isset($pelin_nimi)) {
     <div class="form-group mb-2">
         <?php createConsoleIdDropdown(); ?>
     </div>
-    <button type="submit" class="btn btn-secondary" value="tallenna">Lisää</button>
-    <button type="submit" class="btn btn-secondary" value="poista">Poista</button>
+    <button type="submit" name="tallenna" value="tallenna" class="btn btn-secondary" >Lisää</button>
+    <button type="submit" name="poista" value="poista" class="btn btn-secondary">Poista</button>
+    <button type="submit" name="update" value="update" class="btn btn-secondary">Päivitä</button>
 </form>
 
 <?php include TEMPLATES_DIR . 'footer.php'; ?>

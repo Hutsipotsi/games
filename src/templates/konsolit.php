@@ -1,19 +1,37 @@
 <?php
 
-function getKonsoliKaikki(){
+function getKonsolit(){
     require_once MODULES_DIR.'db.php';
 
-    try{
-        $pdo = getPdoConnection();
-        // Create SQL query to get all rows from a table
-        $sql = "SELECT valmistaja, malli, kpl, vari FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste AND valmistaja=?";
-        // Execute the query
-        $konsolit = $pdo->query($sql);
+   
+    if(isset($_POST['Hae'])) {
 
-        return $konsolit->fetchAll();
-    }catch(PDOException $e){
-        throw $e;
+    if (!empty($_POST["konsoli"])) {
+
+        if ($konsoli=="Kaikki") {
+
+        $pdo = getPdoConnection();
+        //Haetaan tiedot ja aikaerot henkilölle
+        $sql = "SELECT valmistaja, malli, kpl, vari FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste";
+        }
+        else {
+            $sql = "SELECT valmistaja, malli, kpl, vari FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste AND valmistaja=?";
+        }
+
+        $statement = $pdo->prepare($sql);
+        $result = $statement->fetchAll();
+     
+        echo "<table class='table table-striped'><tr><th>Valmistaja</th><th>Malli</th><th>kpl</th><th>Väri</th></tr>";
+        //Luodaan yksi taulukon rivi tietokannan rivistä
+        foreach($result as $row){ 
+            echo "<tr><td>".$row["valmistaja"]."</td>";
+            echo "<td>".$row["malli"]."</td>";
+            echo "<td>".$row["kpl"]."</td>";
+            echo "<td>".$row["vari"]."</td></tr>";
+        }
+     
+        echo "</table>";
     }
 }
-
+}
 ?>
