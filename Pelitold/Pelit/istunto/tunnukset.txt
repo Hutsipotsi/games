@@ -1,8 +1,0 @@
-create table istunto_kayttaja (
-id integer (10) auto_increment primary key,
-tunnus varchar(15),
-salasana varchar(50),
-email varchar(35),
-admin varchar(10));
-
-//***************
