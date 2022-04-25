@@ -9,7 +9,7 @@ $poista = filter_input(INPUT_POST, "poista");
 
 
 function getPeople(){
-    require_once 'db.php';
+    require_once MODULES_DIR . 'db.php';
 
     try {
         $pdo = getPdoConnection();
@@ -32,7 +32,7 @@ else if(array_key_exists('poista', $_POST)) {
 }
 
 function addPerson($uname, $email, $oikat, $pw){
-    require_once 'db.php'; // DB connection
+    require_once MODULES_DIR . 'db.php'; // DB connection
 
     if ($oikat!="1") {
         echo "Sinulla ei ole oikeuksia lisätä käyttäjiä!!";

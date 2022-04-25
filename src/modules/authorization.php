@@ -1,7 +1,7 @@
 <?php
 function login($uname, $pass, $oikat){
 
-    require_once './db.php';
+    require_once MODULES_DIR . 'db.php';
 
     //Tarkistetaan onko muttujia asetettu
     if( !isset($uname) || !isset($pass) ){
