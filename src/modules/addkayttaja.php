@@ -34,20 +34,20 @@ else if(array_key_exists('poista', $_POST)) {
 function addPerson($uname, $email, $oikat, $pw){
     require_once MODULES_DIR . 'db.php'; // DB connection
 
-    if ($oikat!="1") {
-        echo "Sinulla ei ole oikeuksia lisätä käyttäjiä!!";
+    if ($_SESSION['oikat']!="1") {
+        echo '<div class="alert alert-danger" role="alert">Sinulla ei ole oikeuksia lisätä käyttäjiä!!</di>';
         exit;
     }
 
     //Tarkistetaan onko muttujia asetettu
     if( !isset($uname) || !isset($email) || !isset($oikat) || !isset($pw) ){
-        echo "Tietoja puuttui. Täytä kaikki kentät!! Ei voida lisätä henkilöä";
+        echo '<div class="alert alert-danger" role="alert">Tietoja puuttui. Täytä kaikki kentät!! Ei voida lisätä henkilöä</div>';
         exit;
     }
 
     //Tarkistetaan, ettei tyhjiä arvoja muuttujissa
     if( empty($uname) || empty($email) || $oikat === 'Valitse oikeustaso' || empty($pw) ){
-        echo "Et voi asettaa tyhjiä arvoja!!";
+        echo '<div class="alert alert-danger" role="alert">Et voi asettaa tyhjiä arvoja!!</div>';
         exit;
     }
 
@@ -80,6 +80,10 @@ function addPerson($uname, $email, $oikat, $pw){
 function deletePerson($uname){
     require_once MODULES_DIR.'db.php'; // DB connection
     
+    if ($_SESSION['oikat']!="1") {
+        echo '<div class="alert alert-danger" role="alert">Sinulla ei ole oikeutta poistaa käyttäjiä!!</div>';
+        exit;
+    }
     //Tarkistetaan onko muttujia asetettu
     if($_POST=== 'tallenna' || empty($uname) ){
         echo '<div class="alert alert-danger" role="alert">Käyttäjätunnus puuttuu! Henkilöä ei voi poistaa!</div>';
