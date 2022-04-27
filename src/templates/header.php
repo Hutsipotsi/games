@@ -33,7 +33,7 @@
                         } else {
                           ?>
                             <li class="nav-item">
-                                 <a class="nav-link" href="../public/kayttaja.php">Lisää käyttäjä</a>
+                                 <a class="nav-link" href="../public/addkayttaja.php">Lisää käyttäjä</a>
                              </li>
                             <li class="nav-item">
                                  <a class="nav-link" href="addgame.php">Lisää peli</a>

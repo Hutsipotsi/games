@@ -1,5 +1,5 @@
 <?php
-include PUBLIC_DIR . 'kayttaja.php';
+include PUBLIC_DIR . 'addkayttaja.php';
 
 
 $id = filter_input(INPUT_GET, "id");
