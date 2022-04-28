@@ -1,43 +1,51 @@
 <?php
 
-function getPelitV() {
+function getPelitG($genre) {
     require_once MODULES_DIR . 'db.php';
+    
+    try {
+        $pdo = getPdoConnection();
+        $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND valmistaja = '$pvalmistaja' AND tyylilaji = '$genre';";
+        
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
+        }
+        catch(\Throwable $pdoex) {
+            throw $pdoex;
+        }
+    }
+        
 
-    if(isset($_POST['Hae'])) {
-
-        if(!empty($_POST['pvalmistaja']) || (!empty($_POST['ptyylilaji']) || (!empty($_POST['pmalli'])))) {
-
-            if($pvalmistaja != 'Valitse' && $tyylilaji!= 'Valitse') {
-                $pdo = getPdoConnection();
-
-                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli AS konsoli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND valmistaja = '$pvalmistaja' AND tyylilaji = '$ptyylilaji'";
+function getPelitV($genre, $pvalmistaja, $pmalli) {
+    require_once MODULES_DIR . 'db.php';
+    
+    try {
+        if($_POST===$pvalmistaja && $_POST===$genre) {
+            $pdo = getPdoConnection();
+                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND valmistaja = '$pvalmistaja' AND tyylilaji = '$genre';";
             }
-            elseif($pmalli != 'Valitse' && $tyylilaji!= 'Valitse') {
-                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli AS konsoli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND malli = '$pmalli' AND tyylilaji = '$tyylilaji'";
+            elseif($_POST===$pmalli && $_POST===$genre) {
+                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND malli = '$pmalli' AND tyylilaji = '$genre'";
             }
-            elseif($pmalli != 'Valitse') {
-                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli AS konsoli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND malli = '$pmalli'";
+            elseif($_POST===$pmalli) {
+                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND malli = '$pmalli'";
             }
-            elseif($tyylilaji != 'Valitse') {
-                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli AS konsoli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND tyylilaji = '$tyylilaji'";
+            elseif($_POST===$genre) {
+                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND tyylilaji = '$genre'";
             }
-                else {
-                    $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli AS konsoli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND valmistaja = '$pvalmistaja'";
+            else {
+                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND valmistaja = '$pvalmistaja'";
                 }
                 
                 $statement = $pdo->prepare($sql);
+                $statement->execute();
                 $result = $statement->fetchAll();
-                
-                echo "<table class='table table border celpadding=5'><tr><th>Nimi</th><th>Tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr>";
-            //Luodaan yksi taulukon rivi tietokannan rivistä
-            foreach($result as $row){ 
-                echo "<tr><td>".$row["nimi"]."</td>";
-                echo "<td>".$row["tyylilaji"]."</td>";
-                echo "<td>".$row["ikasuositus"]."</td>";
-                echo "<td>".$row["malli"]."</td></tr>";
+                return $result;
             }
-            echo "</table>";
-        }
-    }
+            catch(\Throwable $pdoex) {
+                throw $pdoex;
+            }
 }
 ?>
