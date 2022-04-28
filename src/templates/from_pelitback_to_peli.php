@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * A script for migrating old game data to new format.
+ * 
+ * Reads all data from 'pelitback' table and inserts it into 'peli' and 'yhdistelmagenre' tables.
+ * 
+ * In the old format, game genres were entered and saved in a rigid manner that only allowed 1 to 3 entries.
+ * The new format separates genre data into 'yhdistelmagenre' junction table for more flexibility.
+ */
+
 require '../src/modules/db.php';
 
 $pdo = getPdoConnection();
@@ -48,3 +57,5 @@ if($pelitback->rowCount() > 0) {
         throw $e;
     }
 }
+
+// EOF
