@@ -14,6 +14,10 @@ function addGame($pelin_nimi, $tyylilajit, $ikasuositus, $konsolitunniste)
 {
     require_once MODULES_DIR . 'db.php';
 
+    if ($_SESSION['oikat']>"2") {
+        echo '<div class="alert alert-danger" role="alert">Sinulla ei ole oikeuksia lisätä pelejä!!</di>';
+        exit;
+    }
     if (!isset($pelin_nimi) || !isset($tyylilajit) || !isset($ikasuositus) || !isset($konsolitunniste)) {
         echo "Tietoja puuttuu: Peliä ei tallennettu.";
         exit;
@@ -58,6 +62,11 @@ function addGame($pelin_nimi, $tyylilajit, $ikasuositus, $konsolitunniste)
 function updateGame($pelin_id, $pelin_nimi, $tyylilajit, $ikasuositus, $konsolitunniste)
 {
     require_once MODULES_DIR . 'db.php';
+
+    if ($_SESSION['oikat']>"2") {
+        echo '<div class="alert alert-danger" role="alert">Sinulla ei ole oikeuksia muokata pelejä!!</di>';
+        exit;
+    }
 
     if (!isset($pelin_nimi) || !isset($tyylilajit) || !isset($ikasuositus) || !isset($konsolitunniste)) {
         echo "Tietoja puuttuu: Pelin tietoja ei muutettu.";
@@ -111,6 +120,10 @@ function removeGame($pelin_id)
 {
     require_once MODULES_DIR . 'db.php';
 
+    if ($_SESSION['oikat']!="1") {
+        echo '<div class="alert alert-danger" role="alert">Sinulla ei ole oikeuksia lisätä pelejä!!</di>';
+        exit;
+    }
     $pdo = getPdoConnection();
 
     try {

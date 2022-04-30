@@ -45,6 +45,6 @@
                     </li>
                     </ul>                
             </div>
-            <?php  if (isset($_SESSION["tunnus"])) { echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'].' ' .$_SESSION['oikat'].'</div>';}?> 
+            <?php  if (isset($_SESSION["tunnus"])) { echo '<div class="welcome">Tervetuloa ' .$_SESSION['tunnus'].'</div>';}?> 
         </div>
     </nav>
