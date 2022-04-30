@@ -174,7 +174,7 @@ function searchByName($pnimi)
     $pelit = $results->fetchAll();
 
     echo '<form action="addgame.php" method="post">';
-    echo '<table class="table table border celpadding=5">
+    echo '<table class=table-bordered>
     <tr>
     <th>Pelin nimi</th>
     <th>tyylilaji</th>
@@ -187,7 +187,7 @@ function searchByName($pnimi)
         echo '<td>' . $row["genret"] . '</td>';
         echo '<td>' . $row["ikasuositus"] . '</td>';
         echo '<td>' . $row["malli"] . '</td>';
-        echo '<td><button type="submit" name="edit" value="' . $row['id'] . '" ' . 'class="btn btn-secondary" >Päivitä</button></td>';
+        echo '<td><button type="submit" name="edit" value="' . $row['id'] . '" ' . 'class="btn btn-primary" >Päivitä</button></td>';
     }
     echo '</table>';
     echo '</form>';

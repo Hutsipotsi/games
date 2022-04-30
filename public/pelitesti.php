@@ -89,7 +89,7 @@ if(isset($nimihaku) && ($valmistaja==='Valitse') && ($malli==='Valitse') && ($ty
 
     $result = getPelitNimi($nimihaku); 
 
-    echo "<table class=table-bordered border-primary><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr>";
+    echo "<table class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr>";
     //Luodaan yksi taulukon rivi tietokannan rivistä
         foreach($result as $row){ 
             echo "<tr><td>".$row["nimi"]."</td>";

@@ -91,13 +91,13 @@ else echo '<h4>Päivitä peli</h4>';
             echo '<button type="submit" name="save" value="save" class="btn btn-primary" >Lisää</button>';
         } else {
             echo '<button type="submit" name="update" value="' . $pelin_id . '" class="btn btn-primary">Päivitä</button>';
-            echo '<button type="submit" name="clear" value="clear" class="btn btn-secondary">Tyhjennä</button>';
-            echo '<br><button type="submit" name="delete" value="' . $pelin_id . '" class="btn btn-secondary">Poista tietokannasta</button>';
+            echo '<button type="submit" name="clear" value="clear" class="btn btn-success">Tyhjennä</button>';
+            echo '<br><button type="submit" name="delete" value="' . $pelin_id . '" class="btn btn-danger">Poista tietokannasta</button>';
         }
         
         ?>
     <div>
-    <button type="submit" name="search" value="search" class="btn btn-secondary">Hae nimellä</button>
+    <button type="submit" name="search" value="search" class="btn btn-primary">Hae nimellä</button>
 </form>
 
 <?php
