@@ -25,13 +25,13 @@ $pvalmistaja = $pdo->query($sql);
 
 
 if ($pvalmistaja->rowCount() > 0) {
-    echo '<label for="valmistaja" value="valmistaja" class="col-sm-2 col-form-label">Pelit valmistajittain:</label>
+    echo '<br><label for="valmistaja" value="valmistaja"  class="col-md-0" col-form-label">Pelit valmistajittain:</label>
         <select name="valmistaja">';
 
     foreach ($pvalmistaja as $row) {
         echo '<option value="' . $row["valmistaja"] . '">' . $row["valmistaja"] . '</option>';
     }
-    echo '<option value="Valitse" selected="selected">Valitse</option></select>';
+    echo '<option value="Valitse" selected="selected">Valitse</option></select><br></br>';
 }
 
 //Haetaan valikkoon lista konsoleista
@@ -40,13 +40,13 @@ $sql = "SELECT DISTINCT malli FROM konsolitunniste WHERE malli NOT LIKE '%Hero%'
 $pmalli = $pdo->query($sql);
 
 if ($pmalli->rowCount() > 0) {
-    echo '<label for="malli" value="malli"class="col-sm-2 col-form-label">Pelit konsoleittain:</label>
+    echo '<label for="malli" value="malli" class="col-md-0" col-form-label">Pelit konsoleittain:</label>
         <select name="malli">';
 
     foreach ($pmalli as $row) {
         echo '<option value="' . $row["malli"] . '">' . $row["malli"] . '</option>';
     }
-    echo '<option value="Valitse" selected="selected">Valitse</option></select>';
+    echo '<option value="Valitse" selected="selected">Valitse</option></select><br></br>';
 }
 
 //Haetaan valikkoon tyylilajit
@@ -55,13 +55,13 @@ $sql = "SELECT DISTINCT tyylilaji FROM genre ORDER BY tyylilaji asc";
 $genre = $pdo->query($sql);
 
 if ($genre->rowCount() > 0) {
-    echo '<label for="tyylilaji" value="tyylilaji" class="col-sm-2 col-form-label">Pelit tyylilajeittain:</label>
+    echo '<label for="tyylilaji" value="tyylilaji" class="col-md-0" col-form-label">Pelit tyylilajeittain:</label>
         <select name="tyylilaji">';
 
     foreach ($genre as $row) {
         echo '<option value="' . $row["tyylilaji"] . '">' . $row["tyylilaji"] . '</option>';
     }
-    echo '<option value="Valitse" selected="selected">Valitse</option></select>';
+    echo '<option value="Valitse" selected="selected">Valitse</option></select><br></br>';
 }
 
 //Haetaan valikkoon lista valmistajista
@@ -70,18 +70,18 @@ $sql = "SELECT DISTINCT valmistaja FROM konsolitunniste WHERE malli NOT LIKE '%P
 $pkonsoli = $pdo->query($sql);
 
 if ($pkonsoli->rowCount() > 0) {
-    echo '<label for="konsoli" value="konsoli" class="col-sm-2 col-form-label">Konsolit:</label>
+    echo '<label for="konsoli" value="konsoli" class="col-md-1 " col-form-label">Konsolit:</label>
         <select name="konsoli">';
 
     foreach ($pkonsoli as $row) {
         echo '<option value="' . $row["valmistaja"] . '">' . $row["valmistaja"] . '</option>';
     }
-    echo '<option value="pelikonsoli">Pelikonsoli</option><option value="kasikonsoli">Käsikonsoli</option><option value="konsoli">Kaikki</option><option value="Valitse" selected="selected">Valitse</option></select>';
+    echo '<option value="pelikonsoli">Pelikonsoli</option><option value="kasikonsoli">Käsikonsoli</option><option value="konsoli">Kaikki</option><option value="Valitse" selected="selected">Valitse</option></select><br></br>';
 }
 
-echo '<label for="nimihaku" value="nimihaku" class="col-sm-2 col-form-label">Nimihaku:</label><input type ="text" name="nimihaku"/>';
+echo '<label for="nimihaku" value="nimihaku" class="col-md-1" col-form-label">Nimihaku:</label><input type ="text" name="nimihaku"/>';
 
-echo '<div class="col-sm-2 "><input type="submit" name="Hae" value="Hae"/></div>';
+echo '<div><input type="submit" name="Hae" value="Hae"/></div>';
 
 echo '</form>';
 
