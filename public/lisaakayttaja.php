@@ -1,7 +1,7 @@
 <?php
 
 include TEMPLATES_DIR . 'header.php';
-include MODULES_DIR . 'addkayttaja.php';
+include MODULES_DIR . 'lisaakayttaja.php';
 
     $uname = filter_input(INPUT_POST, "tunnus");
     $email = filter_input(INPUT_POST, "email");

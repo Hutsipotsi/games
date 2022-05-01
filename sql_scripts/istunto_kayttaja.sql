@@ -1,4 +1,3 @@
-drop table if exists istunto_kayttaja;
 CREATE TABLE istunto_kayttaja (
 id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 tunnus varchar(150) NOT NULL UNIQUE,

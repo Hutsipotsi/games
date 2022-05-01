@@ -1,9 +1,9 @@
 <?php
 include MODULES_DIR . 'db.php';
 include TEMPLATES_DIR . 'header.php';
-include TEMPLATES_DIR . 'konsolihaku.php';
-include TEMPLATES_DIR . 'nimihaku.php';
-include TEMPLATES_DIR . 'pelihaku.php';
+//include TEMPLATES_DIR . 'konsolihaku.php';
+//include TEMPLATES_DIR . 'nimihaku.php';
+include TEMPLATES_DIR . 'pelihaut.php';
 
 $nimihaku = filter_input(INPUT_POST, "nimihaku", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $tyylilaji = filter_input(INPUT_POST, "tyylilaji", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -14,7 +14,7 @@ $konsoli = filter_input(INPUT_POST, "konsoli", FILTER_SANITIZE_FULL_SPECIAL_CHAR
 $pelikonsoli = filter_input(INPUT_POST, "pelikonsoli", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $konsolitkaikki = filter_input(INPUT_POST, "kaikki", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 */
-echo '<container><form action="pelitesti.php" method="post">';
+echo '<container><form action="pelit.php" method="post">';
 
 $pdo = getPdoConnection();
 
@@ -77,7 +77,7 @@ if ($pkonsoli->rowCount() > 0) {
         echo '<option value="' . $row["valmistaja"] . '">' . $row["valmistaja"] . '</option>';
     }
     echo '<option value="Pelikonsoli">Pelikonsoli</option>
-    <option value="Käsikonsoli">Käsikonsoli</option>
+    <option value="Kasikonsoli">Käsikonsoli</option>
     <option value="Kaikki">Kaikki</option>
     <option value="Valitse" selected="selected">Valitse</option>
     </select><br></br>';
@@ -190,32 +190,18 @@ if(isset($konsoli) && ($valmistaja==='Valitse') && ($malli==='Valitse') && ($tyy
 
     $result = getKonsolit($konsoli);
 
-    echo "<table class=table-bordered><tr><th>Valmistaja</th><th>Malli</th><th>kpl</th><th>Väri</th></tr>";
+    echo "<table class=table-bordered><tr><th>Valmistaja</th><th>Malli</th><th>kpl</th><th>Väri</th><th>Konsolityyppi</th></tr>";
     foreach($result as $row) {
     echo "<tr><td>".$row['valmistaja']."</td>";
     echo "<td>".$row['malli']."</td>";
     echo "<td>".$row['kpl']."</td>";
     echo "<td>".$row['vari']."</td>";
+    echo "<td>".$row['konsolityyppi']."</td>";
     echo "</tr>";
     }
     echo "</table>";
     return $result;
 }
-/*
-if(isset($nimihaku) && ($valmistaja==='Valitse') && ($malli==='Valitse') && ($tyylilaji==='Valitse') && ($konsoli==='Valitse')) {
-
-    $result = getPelitNimi($nimihaku); 
-
-    echo "<table class='table table border celpadding=5'><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr>";
-    //Luodaan yksi taulukon rivi tietokannan rivistä
-        foreach($result as $row){ 
-            echo "<tr><td>".$row["nimi"]."</td>";
-            echo "<td>".$row["tyylilaji"]."</td>";
-            echo "<td>".$row["ikasuositus"]."</td>";
-            echo "<td>".$row["malli"]."</td></tr>";
-        }
-        echo "</table>";
-    }*/
 
 echo '</container>';
 ?>

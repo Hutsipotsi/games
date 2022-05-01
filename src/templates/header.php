@@ -23,23 +23,23 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="pelitesti.php">Etusivu</a>
+                        <a class="nav-link active" aria-current="page" href="pelit.php">Etusivu</a>
                     </li>
                     <li class="nav-item">
 
                         <?php
                         if (!isset($_SESSION["tunnus"])) {
-                            echo '<a class="nav-link bg-dark" href="login.php">Kirjaudu sisään</a>';
+                            echo '<a class="nav-link bg-dark" href="kirjaudu.php">Kirjaudu sisään</a>';
                         } else {
                           ?>
                             <li class="nav-item">
-                                 <a class="nav-link" href="../public/addkayttaja.php">Lisää käyttäjä</a>
+                                 <a class="nav-link" href="../public/lisaakayttaja.php">Lisää käyttäjä</a>
                              </li>
                             <li class="nav-item">
                                  <a class="nav-link" href="addgame.php">Lisää peli</a>
                              </li>
                          <?php
-                              echo '<a class="nav-link bg-dark" href="logout.php">Kirjaudu ulos</a>';
+                              echo '<a class="nav-link bg-dark" href="kirjaaulos.php">Kirjaudu ulos</a>';
                         }
                         ?>
                     </li>
