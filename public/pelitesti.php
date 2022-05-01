@@ -76,7 +76,11 @@ if ($pkonsoli->rowCount() > 0) {
     foreach ($pkonsoli as $row) {
         echo '<option value="' . $row["valmistaja"] . '">' . $row["valmistaja"] . '</option>';
     }
-    echo '<option value="pelikonsoli">Pelikonsoli</option><option value="kasikonsoli">Käsikonsoli</option><option value="konsoli">Kaikki</option><option value="Valitse" selected="selected">Valitse</option></select><br></br>';
+    echo '<option value="pelikonsoli">Pelikonsoli</option>
+    <option value="kasikonsoli">Käsikonsoli</option>
+    <option value="Kaikki">Kaikki</option>
+    <option value="Valitse" selected="selected">Valitse</option>
+    </select><br></br>';
 }
 
 echo '<label for="nimihaku" value="nimihaku" class="col-md-1" col-form-label">Nimihaku:</label><input type ="text" name="nimihaku"/>';
