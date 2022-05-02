@@ -2,8 +2,6 @@
 include MODULES_DIR . 'db.php';
 include MODULES_DIR . 'skandikorjaus.php';
 include TEMPLATES_DIR . 'header.php';
-//include TEMPLATES_DIR . 'konsolihaku.php';
-//include TEMPLATES_DIR . 'nimihaku.php';
 include TEMPLATES_DIR . 'pelihaut.php';
 
 $nimihaku = charFix(filter_input(INPUT_POST, "nimihaku", FILTER_SANITIZE_FULL_SPECIAL_CHARS));
@@ -16,14 +14,18 @@ echo '<container><form action="pelit.php" method="post">';
 
 $pdo = getPdoConnection();
 
-//Haetaan valikkoon lista valmistajista
-$sql = "SELECT DISTINCT valmistaja FROM konsolitunniste ORDER BY valmistaja asc";
+try {
+    $pdo->beginTransaction();
 
-$pvalmistaja = $pdo->query($sql);
+    //Haetaan valikkoon lista valmistajista
+    $sql = "SELECT DISTINCT valmistaja FROM konsolitunniste ORDER BY valmistaja asc";
+    
+    $pvalmistaja = $pdo->query($sql);
 
-
-if ($pvalmistaja->rowCount() > 0) {
-    echo '<br><label for="valmistaja" value="valmistaja"  class="col-md-0" col-form-label">Pelit valmistajittain:</label>
+    $pdo->commit();
+    
+    if ($pvalmistaja->rowCount() > 0) {
+        echo '<br><label for="valmistaja" value="valmistaja"  class="col-md-0" col-form-label">Pelit valmistajittain:</label>
         <select name="valmistaja">';
 
     foreach ($pvalmistaja as $row) {
@@ -31,14 +33,24 @@ if ($pvalmistaja->rowCount() > 0) {
     }
     echo '<option value="Valitse" selected="selected">Valitse</option></select><br></br>';
 }
+}
+catch(\Throwable $pdoex) {
+    $pdo->rollback();
+    throw $pdoex;
+}
 
-//Haetaan valikkoon lista konsoleista
-$sql = "SELECT DISTINCT malli FROM konsolitunniste WHERE malli NOT LIKE '%Hero%' AND malli NOT LIKE '%Groud%' AND malli NOT LIKE '%Micro%' AND malli NOT LIKE '%One%' ORDER BY malli asc";
+try {
+    $pdo->beginTransaction();
+    
+    //Haetaan valikkoon lista konsoleista
+    $sql = "SELECT DISTINCT malli FROM konsolitunniste WHERE malli NOT LIKE '%Hero%' AND malli NOT LIKE '%Groud%' AND malli NOT LIKE '%Micro%' AND malli NOT LIKE '%One%' ORDER BY malli asc";
+    
+    $pmalli = $pdo->query($sql);
 
-$pmalli = $pdo->query($sql);
-
-if ($pmalli->rowCount() > 0) {
-    echo '<label for="malli" value="malli" class="col-md-0" col-form-label">Pelit konsoleittain:</label>
+    $pdo->commit();
+    
+    if ($pmalli->rowCount() > 0) {
+        echo '<label for="malli" value="malli" class="col-md-0" col-form-label">Pelit konsoleittain:</label>
         <select name="malli">';
 
     foreach ($pmalli as $row) {
@@ -46,14 +58,24 @@ if ($pmalli->rowCount() > 0) {
     }
     echo '<option value="Valitse" selected="selected">Valitse</option></select><br></br>';
 }
+}
+catch(\Throwable $pdoex) {
+    $pdo->rollback();
+    throw $pdoex;
+}
 
-//Haetaan valikkoon tyylilajit
-$sql = "SELECT DISTINCT tyylilaji FROM genre ORDER BY tyylilaji asc";
-
-$genre = $pdo->query($sql);
-
-if ($genre->rowCount() > 0) {
-    echo '<label for="tyylilaji" value="tyylilaji" class="col-md-0" col-form-label">Pelit tyylilajeittain:</label>
+try {
+    $pdo->beginTransaction();
+    
+    //Haetaan valikkoon tyylilajit
+    $sql = "SELECT DISTINCT tyylilaji FROM genre ORDER BY tyylilaji asc";
+    
+    $genre = $pdo->query($sql);
+    
+    $pdo->commit();
+    
+    if ($genre->rowCount() > 0) {
+        echo '<label for="tyylilaji" value="tyylilaji" class="col-md-0" col-form-label">Pelit tyylilajeittain:</label>
         <select name="tyylilaji">';
 
     foreach ($genre as $row) {
@@ -61,14 +83,24 @@ if ($genre->rowCount() > 0) {
     }
     echo '<option value="Valitse" selected="selected">Valitse</option></select><br></br>';
 }
+}
+catch(\Throwable $pdoex) {
+    $pdo->rollback();
+    throw $pdoex;
+}
 
-//Haetaan valikkoon lista valmistajista
-$sql = "SELECT DISTINCT valmistaja FROM konsolitunniste WHERE malli NOT LIKE '%PC%' ORDER BY valmistaja asc";
-
-$pkonsoli = $pdo->query($sql);
-
-if ($pkonsoli->rowCount() > 0) {
-    echo '<label for="konsoli" value="konsoli" class="col-md-1 " col-form-label">Konsolit:</label>
+try {
+    $pdo->beginTransaction();
+    
+    //Haetaan valikkoon lista valmistajista
+    $sql = "SELECT DISTINCT valmistaja FROM konsolitunniste WHERE malli NOT LIKE '%PC%' ORDER BY valmistaja asc";
+    
+    $pkonsoli = $pdo->query($sql);
+    
+    $pdo->commit();
+    
+    if ($pkonsoli->rowCount() > 0) {
+        echo '<label for="konsoli" value="konsoli" class="col-md-1 " col-form-label">Konsolit:</label>
         <select name="konsoli">';
 
     foreach ($pkonsoli as $row) {
@@ -80,10 +112,16 @@ if ($pkonsoli->rowCount() > 0) {
     <option value="Valitse" selected="selected">Valitse</option>
     </select><br></br>';
 }
+}
+catch(\Throwable $pdoex) {
+    $pdo->rollback();
+    throw $pdoex;
+}
 
 echo '<label for="nimihaku" value="nimihaku" class="col-md-1" col-form-label">Nimihaku:</label><input type ="text" name="nimihaku"/>';
 
 echo '<div><input type="submit" name="Hae" class="btn btn-primary" value="Hae"/></div>';
+
 
 echo '</form>';
 
