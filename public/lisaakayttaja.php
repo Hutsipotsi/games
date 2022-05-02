@@ -13,7 +13,7 @@ include MODULES_DIR . 'lisaakayttaja.php';
     
 ?>
 
-<form method="post">
+<form method="post" id="käyttäjä">
 <div class="form-group row">
   <label for="tunnus" class="col-sm-2 col-form-label">Käyttäjätunnus</label>
   <div class="col-sm-2">
@@ -50,8 +50,8 @@ include MODULES_DIR . 'lisaakayttaja.php';
   </div>
   <div class="form-group row">
   <div class="col-sm-2">
-    <button type="submit" name="tallenna" value="tallenna" class="btn btn-secondary">Tallenna</button>
-    <button type="poista" name="poista" value="poista" class="btn btn-secondary">Poista</button>
+    <button type="submit" name="tallenna" value="tallenna" class="btn btn-primary">Tallenna</button>
+    <button type="poista" name="poista" value="poista" class="btn btn-primary">Poista</button>
   </div>
 </div>
 </form>

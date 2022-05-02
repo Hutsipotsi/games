@@ -22,7 +22,7 @@ if (!isset($_SESSION["tunnus"]) && isset($uname)) {
 if (!isset($_SESSION["tunnus"])) {
 ?>
     
-    <form action="kirjaudu.php"  method="post">
+    <form action="kirjaudu.php" id="kirjautumis_sivu" method="post">
     <div class="form-group row">
         <label for="tunnus" class="col-sm-1 col-form-label">Tunnus:</label>
         <div class="col-sm-4">
@@ -34,8 +34,8 @@ if (!isset($_SESSION["tunnus"])) {
         <div class="col-sm-4">
         <input type="password" name="salasana" id="salasana">
         </div>
-        <div class="form-group row">
-        <input type="submit" class="btn btn-secondary col-sm-1 col-form-label" value="Kirjaudu">
+        <div>
+        <input type="submit" class="btn btn-primary col-sm-1" value="Kirjaudu">
         </div>
     </div>
     </form>

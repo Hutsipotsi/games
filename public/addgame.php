@@ -43,7 +43,7 @@ else echo '<h4>Päivitä peli</h4>';
 
 ?>
 
-<form action="addgame.php" method="post">
+<form action="addgame.php" method="post" id="peli">
     <?php
 
     if (isset($pelin_id)) {
@@ -97,7 +97,7 @@ else echo '<h4>Päivitä peli</h4>';
         
         ?>
     <div>
-    <button type="submit" name="search" value="search" class="btn btn-primary">Hae nimellä</button>
+    <button type="submit" name="search" id="peli_nappi" value="search" class="btn btn-primary">Hae nimellä</button>
 </form>
 
 <?php
