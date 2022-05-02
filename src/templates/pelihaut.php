@@ -114,7 +114,7 @@ function getPelitMt($malli, $tyylilaji) {
                 if($konsoli==='Kaikki') {
                     $sql = "SELECT valmistaja, malli, kpl, vari, konsolityyppi FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste";
                 }
-                elseif(($konsoli==='Pelikonsoli') || ($konsoli==='Kasikonsoli')) {
+                elseif(($konsoli==='Pelikonsoli') || ($konsoli==='Käsikonsoli')) {
                     $sql = "SELECT valmistaja, malli, kpl, vari, konsolityyppi FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste AND konsolityyppi = '$konsoli'";
                 }
                 else {

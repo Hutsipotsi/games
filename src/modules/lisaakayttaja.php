@@ -13,13 +13,17 @@ function getPeople(){
 
     try {
         $pdo = getPdoConnection();
+
+        $pdo->beginTransaction();
         // Create SQL query to get all rows from a table
         $sql = "SELECT * FROM istunto_kayttaja";
         // Execute the query
         $people = $pdo->query($sql);
-
+        $pdo->commit();
         return $people->fetchAll();
+       
     }catch(PDOException $e){
+        $pdo->rollBack();
         throw $e;
     }
 }
@@ -94,7 +98,7 @@ function deletePerson($uname){
         $pdo = getPdoConnection();
         // Start transaction
         $pdo->beginTransaction();
-        // Delete from worktime table
+        // Delete from istunto_kayttaja table
         $sql = "DELETE FROM istunto_kayttaja WHERE tunnus = ?";
         $statement = $pdo->prepare($sql);
         $statement->bindParam(1, $uname);        
