@@ -36,7 +36,7 @@
                                  <a class="nav-link" href="../public/lisaakayttaja.php">Lisää käyttäjä</a>
                              </li>
                             <li class="nav-item">
-                                 <a class="nav-link" href="addgame.php">Lisää peli</a>
+                                 <a class="nav-link" href="lisaapeli.php">Lisää peli</a>
                              </li>
                          <?php
                               echo '<a class="nav-link" href="kirjaaulos.php">Kirjaudu ulos</a>';

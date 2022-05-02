@@ -1,6 +1,6 @@
 <?php
 
-include MODULES_DIR . 'dropdown_data.php';
+include MODULES_DIR . 'valikontiedot.php';
 
 function createGenreDropdown($tyylilajit)
 {

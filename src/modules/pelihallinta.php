@@ -173,7 +173,7 @@ function searchByName($pnimi)
     $results = $pdo->query($sql);
     $pelit = $results->fetchAll();
 
-    echo '<form action="addgame.php" method="post">';
+    echo '<form action="lisaapeli.php" method="post">';
     echo '<table class=table-bordered>
     <tr>
     <th>Pelin nimi</th>

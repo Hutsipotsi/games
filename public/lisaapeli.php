@@ -5,8 +5,8 @@
  */
 
 include TEMPLATES_DIR . 'header.php';
-include TEMPLATES_DIR . 'dropdowns.php';
-include MODULES_DIR . 'managegame.php';
+include TEMPLATES_DIR . 'vetovalikot.php';
+include MODULES_DIR . 'pelihallinta.php';
 
 $pelin_id = filter_input(INPUT_POST, "edit");
 if (!isset($pelin_id)) $pelin_id = filter_input(INPUT_POST, "update");
@@ -36,14 +36,14 @@ if (isset($_POST['save'])) {
 } else if (isset($_POST['delete']) && isset($pelin_id)) {
     removeGame($pelin_id);
     echo '<div class="alert alert-success" role="alert">Peli ' . $pelin_nimi . ' poistettu tietokannasta.</div>';
-} else if (isset($_POST['clear'])) header('Location: addgame.php');
+} else if (isset($_POST['clear'])) header('Location: lisaapeli.php');
 
 if (!isset($pelin_id)) echo '<h4>Lisää peli</h4>';
 else echo '<h4>Päivitä peli</h4>';
 
 ?>
 
-<form action="addgame.php" method="post" id="peli">
+<form action="lisaapeli.php" method="post" id="peli">
     <?php
 
     if (isset($pelin_id)) {
