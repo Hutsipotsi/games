@@ -1,1 +1,1 @@
-php_value auto_prepend_file "../src/modules/constants.php"
+php_value auto_prepend_file "../src/modules/vakiot.php"

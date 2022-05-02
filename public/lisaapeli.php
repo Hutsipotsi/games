@@ -7,11 +7,12 @@
 include TEMPLATES_DIR . 'header.php';
 include TEMPLATES_DIR . 'vetovalikot.php';
 include MODULES_DIR . 'pelihallinta.php';
+include MODULES_DIR . 'skandikorjaus.php';
 
 $pelin_id = filter_input(INPUT_POST, "edit");
 if (!isset($pelin_id)) $pelin_id = filter_input(INPUT_POST, "update");
 if (!isset($pelin_id)) $pelin_id = filter_input(INPUT_POST, "delete");
-$pelin_nimi = filter_input(INPUT_POST, "pelin_nimi", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$pelin_nimi = charFix(filter_input(INPUT_POST, "pelin_nimi", FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 $tyylilajit = array(); //= filter_input(INPUT_POST, "tyylilajit");
 if(isset($_POST['tyylilajit'])) {
     foreach ($_POST['tyylilajit'] as $tyylilaji) array_push($tyylilajit, $tyylilaji);
