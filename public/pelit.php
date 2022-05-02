@@ -1,19 +1,17 @@
 <?php
 include MODULES_DIR . 'db.php';
+include MODULES_DIR . 'skandikorjaus.php';
 include TEMPLATES_DIR . 'header.php';
 //include TEMPLATES_DIR . 'konsolihaku.php';
 //include TEMPLATES_DIR . 'nimihaku.php';
 include TEMPLATES_DIR . 'pelihaut.php';
 
-$nimihaku = filter_input(INPUT_POST, "nimihaku", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$tyylilaji = filter_input(INPUT_POST, "tyylilaji", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$nimihaku = charFix(filter_input(INPUT_POST, "nimihaku", FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+$tyylilaji = charFix(filter_input(INPUT_POST, "tyylilaji", FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 $valmistaja = filter_input(INPUT_POST, "valmistaja", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $malli = filter_input(INPUT_POST, "malli", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$konsoli = filter_input(INPUT_POST, "konsoli", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-/*$kasikonsoli = filter_input(INPUT_POST, "käsikonsoli", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$pelikonsoli = filter_input(INPUT_POST, "pelikonsoli", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$konsolitkaikki = filter_input(INPUT_POST, "kaikki", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-*/
+$konsoli = charFix(filter_input(INPUT_POST, "konsoli", FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+
 echo '<container><form action="pelit.php" method="post">';
 
 $pdo = getPdoConnection();
@@ -76,8 +74,8 @@ if ($pkonsoli->rowCount() > 0) {
     foreach ($pkonsoli as $row) {
         echo '<option value="' . $row["valmistaja"] . '">' . $row["valmistaja"] . '</option>';
     }
-    echo '<option value="Pelikonsoli">Pelikonsoli</option>
-    <option value="Kasikonsoli">Käsikonsoli</option>
+    echo '<option value="Pelikonsoli">Pelikonsolit</option>
+    <option value="Käsikonsoli">Käsikonsolit</option>
     <option value="Kaikki">Kaikki</option>
     <option value="Valitse" selected="selected">Valitse</option>
     </select><br></br>';
