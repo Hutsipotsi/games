@@ -159,19 +159,27 @@ function searchByName($pnimi)
     require_once MODULES_DIR . 'db.php';
 
     $pdo = getPdoConnection();
-    $sql = "SELECT peli.id, peli.nimi, peli.ikasuositus, konsolitunniste.malli, group_concat(genre.tyylilaji) as genret
-        FROM peli
-        INNER JOIN konsolitunniste
-        ON peli.konsolitunniste = konsolitunniste.id
-        INNER JOIN yhdistelmagenre
-        ON peli.id = yhdistelmagenre.peli_id
-        INNER JOIN genre
-        ON yhdistelmagenre.genre_id = genre.id
-        WHERE peli.nimi LIKE '%$pnimi%'
-        GROUP BY peli.id";
+    try {
+        $pdo->beginTransaction();
 
-    $results = $pdo->query($sql);
-    $pelit = $results->fetchAll();
+        $sql = "SELECT peli.id, peli.nimi, peli.ikasuositus, konsolitunniste.malli, group_concat(genre.tyylilaji) as genret
+            FROM peli
+            INNER JOIN konsolitunniste
+            ON peli.konsolitunniste = konsolitunniste.id
+            INNER JOIN yhdistelmagenre
+            ON peli.id = yhdistelmagenre.peli_id
+            INNER JOIN genre
+            ON yhdistelmagenre.genre_id = genre.id
+            WHERE peli.nimi LIKE '%$pnimi%'
+            GROUP BY peli.id";
+
+        $results = $pdo->query($sql);
+        $pelit = $results->fetchAll();
+        $pdo->commit();
+    } catch (\Throwable $e) {
+        $pdo->rollback();
+        throw $e;
+    }
 
     echo '<form action="lisaapeli.php" method="post">';
     echo '<table class=table-bordered>
@@ -204,12 +212,21 @@ function fetchGameName($pelin_id)
     require_once MODULES_DIR . 'db.php';
 
     $pdo = getPdoConnection();
-    $sql = "SELECT peli.nimi
-        FROM peli
-        WHERE peli.id = $pelin_id";
 
-    $game = $pdo->query($sql)->fetch();
-    return $game['nimi'];
+    try {
+        $pdo->beginTransaction();
+        $sql = "SELECT peli.nimi
+            FROM peli
+            WHERE peli.id = $pelin_id";
+
+        $game = $pdo->query($sql)->fetch();
+        $pdo->commit();
+
+        return $game['nimi'];
+    } catch (\Throwable $e) {
+        $pdo->rollback();
+        throw $e;
+    }
 }
 
 /**
@@ -223,16 +240,25 @@ function fetchGenres($pelin_id)
     require_once MODULES_DIR . 'db.php';
 
     $pdo = getPdoConnection();
-    $sql = "SELECT yhdistelmagenre.genre_id
-        FROM yhdistelmagenre
-        WHERE yhdistelmagenre.peli_id = $pelin_id";
 
-    $results = $pdo->query($sql)->fetchAll();
-    $genres = array();
-    foreach ($results as $row) {
-        array_push($genres, $row['genre_id']);
+    try {
+        $pdo->beginTransaction();
+        $sql = "SELECT yhdistelmagenre.genre_id
+            FROM yhdistelmagenre
+            WHERE yhdistelmagenre.peli_id = $pelin_id";
+
+        $results = $pdo->query($sql)->fetchAll();
+        $genres = array();
+        foreach ($results as $row) {
+            array_push($genres, $row['genre_id']);
+        }
+        $pdo->commit();
+
+        return $genres;
+    } catch (\Throwable $e) {
+        $pdo->rollback();
+        throw $e;
     }
-    return $genres;
 }
 
 /**
@@ -246,12 +272,22 @@ function fetchAgeRating($pelin_id)
     require_once MODULES_DIR . 'db.php';
 
     $pdo = getPdoConnection();
-    $sql = "SELECT peli.ikasuositus
-        FROM peli
-        WHERE peli.id = $pelin_id";
 
-    $game = $pdo->query($sql)->fetch();
-    return $game['ikasuositus'];
+    try {
+        $pdo->beginTransaction();
+
+        $sql = "SELECT peli.ikasuositus
+            FROM peli
+            WHERE peli.id = $pelin_id";
+
+        $game = $pdo->query($sql)->fetch();
+        $pdo->commit();
+
+        return $game['ikasuositus'];
+    } catch (\Throwable $e) {
+        $pdo->rollback();
+        throw $e;
+    }
 }
 
 /**
@@ -265,12 +301,21 @@ function fetchConsoleID($pelin_id)
     require_once MODULES_DIR . 'db.php';
 
     $pdo = getPdoConnection();
-    $sql = "SELECT peli.konsolitunniste
-        FROM peli
-        WHERE peli.id = $pelin_id";
 
-    $game = $pdo->query($sql)->fetch();
-    return $game['konsolitunniste'];
+    try {
+        $pdo->beginTransaction();
+        $sql = "SELECT peli.konsolitunniste
+            FROM peli
+            WHERE peli.id = $pelin_id";
+
+        $game = $pdo->query($sql)->fetch();
+        $pdo->commit();
+        
+        return $game['konsolitunniste'];
+    } catch (\Throwable $e) {
+        $pdo->rollback();
+        throw $e;
+    }
 }
 
 // EOF
