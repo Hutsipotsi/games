@@ -20,6 +20,7 @@ if(isset($_POST['tyylilajit'])) {
 $ikasuositus = filter_input(INPUT_POST, "ikasuositus", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $konsolitunniste = filter_input(INPUT_POST, "konsolitunniste");
 
+echo '<div class=container>';
 //To make konsoli-dropdown show correct default selected value when there's no game to be updated.
 if ($konsolitunniste == -1) $konsolitunniste = null;
 
@@ -89,11 +90,11 @@ else echo '<h4>Päivitä peli</h4>';
         <?php
         
         if (!isset($pelin_id)) {
-            echo '<button type="submit" name="save" value="save" class="btn btn-primary" >Lisää</button>';
+            echo '<button type="submit" name="save" id="save_nappi" value="save" class="btn btn-primary" >Lisää</button>';
         } else {
-            echo '<button type="submit" name="update" value="' . $pelin_id . '" class="btn btn-primary">Päivitä</button>';
-            echo '<button type="submit" name="clear" value="clear" class="btn btn-success">Tyhjennä</button>';
-            echo '<br><button type="submit" name="delete" value="' . $pelin_id . '" class="btn btn-danger">Poista tietokannasta</button>';
+            echo '<button type="submit" id="paivita_nappi" name="update" value="' . $pelin_id . '" class="btn btn-primary">Päivitä</button>';
+            echo '<button type="submit" name="clear" id="clear_nappi" value="clear" class="btn btn-success">Tyhjennä</button>';
+            echo '<br><button type="submit" id="delete_nappi" name="delete" value="' . $pelin_id . '" class="btn btn-danger">Poista tietokannasta</button>';
         }
         
         ?>
@@ -106,7 +107,7 @@ else echo '<h4>Päivitä peli</h4>';
 if (isset($pelin_nimi) && !empty($pelin_nimi) && isset($_POST['search']) && $_POST['search']) {
     searchByName($pelin_nimi);
 }
-
+echo '</div>';
 include TEMPLATES_DIR . 'footer.php';
 
 // EOF

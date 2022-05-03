@@ -12,6 +12,9 @@ include MODULES_DIR . 'lisaakayttaja.php';
 
     
 ?>
+<div class=container>
+
+<h4>Lisää käyttäjä</h4>
 
 <form method="post" id="käyttäjä">
 <div class="form-group row">
@@ -55,5 +58,6 @@ include MODULES_DIR . 'lisaakayttaja.php';
   </div>
 </div>
 </form>
+</div>
 <?php include TEMPLATES_DIR . 'footer.php'; ?>
  

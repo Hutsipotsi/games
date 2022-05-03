@@ -21,7 +21,7 @@ if (!isset($_SESSION["tunnus"]) && isset($uname)) {
 
 if (!isset($_SESSION["tunnus"])) {
 ?>
-    
+<div class=container>
     <form action="kirjaudu.php" id="kirjautumis_sivu" method="post">
     <div class="form-group row">
         <label for="tunnus" class="col-sm-1 col-form-label">Tunnus:</label>
@@ -39,6 +39,6 @@ if (!isset($_SESSION["tunnus"])) {
         </div>
     </div>
     </form>
-
+    </div>
 
 <?php } include TEMPLATES_DIR . 'footer.php'; ?>

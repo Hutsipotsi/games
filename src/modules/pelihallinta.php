@@ -10,6 +10,9 @@
  * @param int $ikasuositus the game's age rating
  * @param int $konsolitunniste the gaming console the game is for
  */
+
+echo '<div class=container>';
+
 function addGame($pelin_nimi, $tyylilajit, $ikasuositus, $konsolitunniste)
 {
     require_once MODULES_DIR . 'db.php';
@@ -121,7 +124,7 @@ function removeGame($pelin_id)
     require_once MODULES_DIR . 'db.php';
 
     if ($_SESSION['oikat']!="1") {
-        echo '<div class="alert alert-danger" role="alert">Sinulla ei ole oikeuksia lisätä pelejä!!</di>';
+        echo '<div class="alert alert-danger" role="alert">Sinulla ei ole oikeuksia poistaa pelejä!!</di>';
         exit;
     }
     $pdo = getPdoConnection();
@@ -182,7 +185,7 @@ function searchByName($pnimi)
     }
 
     echo '<form action="lisaapeli.php" method="post">';
-    echo '<table class=table-bordered>
+    echo '<div class="table"><table class=gridtable>
     <tr>
     <th>Pelin nimi</th>
     <th>tyylilaji</th>
@@ -197,7 +200,7 @@ function searchByName($pnimi)
         echo '<td>' . $row["malli"] . '</td>';
         echo '<td><button type="submit" name="edit" value="' . $row['id'] . '" ' . 'class="btn btn-primary" >Päivitä</button></td>';
     }
-    echo '</table>';
+    echo '</table></div>';
     echo '</form>';
 }
 
@@ -317,5 +320,5 @@ function fetchConsoleID($pelin_id)
         throw $e;
     }
 }
-
+echo '</div>';
 // EOF
