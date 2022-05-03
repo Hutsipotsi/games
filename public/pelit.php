@@ -1,8 +1,10 @@
+
 <?php
 include MODULES_DIR . 'db.php';
 include MODULES_DIR . 'skandikorjaus.php';
 include TEMPLATES_DIR . 'header.php';
 include TEMPLATES_DIR . 'pelihaut.php';
+
 
 $nimihaku = charFix(filter_input(INPUT_POST, "nimihaku", FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 $tyylilaji = charFix(filter_input(INPUT_POST, "tyylilaji", FILTER_SANITIZE_FULL_SPECIAL_CHARS));
@@ -25,13 +27,13 @@ try {
     $pdo->commit();
     
     if ($pvalmistaja->rowCount() > 0) {
-        echo '<br><label for="valmistaja" value="valmistaja"  class="col-md-0" col-form-label">Pelit valmistajittain:</label>
+        echo '<label for="valmistaja" style="margin:10px;" value="valmistaja"  class="col-md-0" col-form-label">Pelit valmistajittain:</label>
         <select name="valmistaja">';
 
     foreach ($pvalmistaja as $row) {
         echo '<option value="' . $row["valmistaja"] . '">' . $row["valmistaja"] . '</option>';
     }
-    echo '<option value="Valitse" selected="selected">Valitse</option></select><br></br>';
+    echo '<option value="Valitse" selected="selected">Valitse</option></select><p></p>';
 }
 }
 catch(\Throwable $pdoex) {
@@ -50,13 +52,13 @@ try {
     $pdo->commit();
     
     if ($pmalli->rowCount() > 0) {
-        echo '<label for="malli" value="malli" class="col-md-0" col-form-label">Pelit konsoleittain:</label>
+        echo '<label for="malli" value="malli" style="margin:10px;" class="col-md-0" col-form-label">Pelit konsoleittain:</label>
         <select name="malli">';
 
     foreach ($pmalli as $row) {
         echo '<option value="' . $row["malli"] . '">' . $row["malli"] . '</option>';
     }
-    echo '<option value="Valitse" selected="selected">Valitse</option></select><br></br>';
+    echo '<option value="Valitse" selected="selected">Valitse</option></select><p></p>';
 }
 }
 catch(\Throwable $pdoex) {
@@ -75,13 +77,13 @@ try {
     $pdo->commit();
     
     if ($genre->rowCount() > 0) {
-        echo '<label for="tyylilaji" value="tyylilaji" class="col-md-0" col-form-label">Pelit tyylilajeittain:</label>
+        echo '<label for="tyylilaji" value="tyylilaji" style="margin:10px;" class="col-md-0" col-form-label">Pelit tyylilajeittain:</label>
         <select name="tyylilaji">';
 
     foreach ($genre as $row) {
         echo '<option value="' . $row["tyylilaji"] . '">' . $row["tyylilaji"] . '</option>';
     }
-    echo '<option value="Valitse" selected="selected">Valitse</option></select><br></br>';
+    echo '<option value="Valitse" selected="selected">Valitse</option></select><p></p>';
 }
 }
 catch(\Throwable $pdoex) {
@@ -100,7 +102,7 @@ try {
     $pdo->commit();
     
     if ($pkonsoli->rowCount() > 0) {
-        echo '<label for="konsoli" value="konsoli" class="col-md-1 " col-form-label">Konsolit:</label>
+        echo '<label for="konsoli" value="konsoli" style="margin:10px;" class="col-md-1 " col-form-label">Konsolit:</label>
         <select name="konsoli">';
 
     foreach ($pkonsoli as $row) {
@@ -110,7 +112,7 @@ try {
     <option value="Käsikonsoli">Käsikonsolit</option>
     <option value="Kaikki">Kaikki</option>
     <option value="Valitse" selected="selected">Valitse</option>
-    </select><br></br>';
+    </select><p></p>';
 }
 }
 catch(\Throwable $pdoex) {
@@ -118,9 +120,9 @@ catch(\Throwable $pdoex) {
     throw $pdoex;
 }
 
-echo '<label for="nimihaku" value="nimihaku" class="col-md-1" col-form-label">Nimihaku:</label><input type ="text" name="nimihaku"/>';
+echo '<label for="nimihaku" value="nimihaku" style="margin:10px;" class="col-md-1" col-form-label">Nimihaku:</label><input type ="text" name="nimihaku"/>';
 
-echo '<div><input type="submit" name="Hae" class="btn btn-primary" value="Hae"/></div>';
+echo '<div><input type="submit" name="Hae" style="margin:10px;" class="btn btn-primary" value="Hae"/></div>';
 
 
 echo '</form>';
@@ -129,15 +131,15 @@ if(isset($nimihaku) && ($valmistaja==='Valitse') && ($malli==='Valitse') && ($ty
 
     $result = getPelitNimi($nimihaku); 
 
-    echo "<table class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr><br>";
+    echo '<table style="margin:10px;" class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr><p>';
     //Luodaan yksi taulukon rivi tietokannan rivistä
         foreach($result as $row){ 
-            echo "<tr><td>".$row["nimi"]."</td>";
-            echo "<td>".$row["tyylilaji"]."</td>";
-            echo "<td>".$row["ikasuositus"]."</td>";
-            echo "<td>".$row["malli"]."</td></tr>";
+            echo "<tr><td>" . $row["nimi"] . "</td>";
+            echo "<td>" . $row["tyylilaji"] . "</td>";
+            echo "<td>" . $row["ikasuositus"] . "</td>";
+            echo "<td>" . $row["malli"] . "</td></tr>";
         }
-        echo "</table><p>";
+        echo "</table>";
         return $result;
     }
 
@@ -146,7 +148,7 @@ if (isset($valmistaja) && ($tyylilaji==='Valitse') && ($konsoli==='Valitse') && 
 
     $result = getPelitV($valmistaja);
 
-    echo '<table class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr><br>';
+    echo '<table style="margin:10px;" class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr>';
     //Luodaan yksi taulukon rivi tietokannan rivistä
     foreach ($result as $row) {
         echo "<tr><td>" . $row["nimi"] . "</td>";
@@ -154,7 +156,7 @@ if (isset($valmistaja) && ($tyylilaji==='Valitse') && ($konsoli==='Valitse') && 
         echo "<td>" . $row["ikasuositus"] . "</td>";
         echo "<td>" . $row["malli"] . "</td></tr>";
     }
-    echo "</table><p>";
+    echo "</table>";
     return $result;
 }
 
@@ -162,7 +164,7 @@ if (isset($malli) && ($tyylilaji==='Valitse') && ($konsoli==='Valitse') && ($val
 
 $result = getPelitM($malli);
 
-echo "<table class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr><p>";
+echo "<table style='margin:10px;' class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr>";
 //Luodaan yksi taulukon rivi tietokannan rivistä
 foreach ($result as $row) {
     echo "<tr><td>" . $row["nimi"] . "</td>";
@@ -170,7 +172,7 @@ foreach ($result as $row) {
     echo "<td>" . $row["ikasuositus"] . "</td>";
     echo "<td>" . $row["malli"] . "</td></tr>";
 }
-echo "</table><p>";
+echo "</table>";
 return $result;
 }
 
@@ -178,7 +180,7 @@ if (isset($tyylilaji) && ($malli==='Valitse') && ($konsoli==='Valitse') && ($val
 
     $result = getPelitT($tyylilaji);
 
-    echo "<table class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr><p>";
+    echo "<table style='margin:10px;' class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr>";
     //Luodaan yksi taulukon rivi tietokannan rivistä
     foreach ($result as $row) {
         echo "<tr><td>" . $row["nimi"] . "</td>";
@@ -186,7 +188,7 @@ if (isset($tyylilaji) && ($malli==='Valitse') && ($konsoli==='Valitse') && ($val
         echo "<td>" . $row["ikasuositus"] . "</td>";
         echo "<td>" . $row["malli"] . "</td></tr>";
     }
-    echo "</table><p>";
+    echo "</table>";
     return $result;
 }
 
@@ -194,7 +196,7 @@ if (isset($valmistaja) && (isset($tyylilaji)) && ($konsoli==='Valitse') && ($mal
 
     $result = getPelitVt($valmistaja, $tyylilaji);
 
-    echo "<table class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr><p>";
+    echo "<table style='margin:10px;' class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr>";
     //Luodaan yksi taulukon rivi tietokannan rivistä
     foreach ($result as $row) {
         echo "<tr><td>" . $row["nimi"] . "</td>";
@@ -202,7 +204,7 @@ if (isset($valmistaja) && (isset($tyylilaji)) && ($konsoli==='Valitse') && ($mal
         echo "<td>" . $row["ikasuositus"] . "</td>";
         echo "<td>" . $row["malli"] . "</td></tr>";
     }
-    echo "</table><p>";
+    echo "</table>";
     return $result;
 }
 
@@ -210,7 +212,7 @@ if (isset($malli) && (isset($tyylilaji)) && ($konsoli==='Valitse') && ($valmista
 
     $result = getPelitMt($malli, $tyylilaji);
 
-    echo "<table class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr><p>";
+    echo "<table style='margin:10px;' class=table-bordered><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr>";
     //Luodaan yksi taulukon rivi tietokannan rivistä
     foreach ($result as $row) {
         echo "<tr><td>" . $row["nimi"] . "</td>";
@@ -218,7 +220,7 @@ if (isset($malli) && (isset($tyylilaji)) && ($konsoli==='Valitse') && ($valmista
         echo "<td>" . $row["ikasuositus"] . "</td>";
         echo "<td>" . $row["malli"] . "</td></tr>";
     }
-    echo "</table><p>";
+    echo "</table>";
     return $result;
 }
 
@@ -226,7 +228,7 @@ if(isset($konsoli) && ($valmistaja==='Valitse') && ($malli==='Valitse') && ($tyy
 
     $result = getKonsolit($konsoli);
 
-    echo "<table class=table-bordered><tr><th>Valmistaja</th><th>Malli</th><th>kpl</th><th>Väri</th><th>Konsolityyppi</th></tr><p>";
+    echo "<table style='margin:10px;' class=table-bordered><tr><th>Valmistaja</th><th>Malli</th><th>kpl</th><th>Väri</th><th>Konsolityyppi</th></tr>";
     foreach($result as $row) {
     echo "<tr><td>".$row['valmistaja']."</td>";
     echo "<td>".$row['malli']."</td>";
@@ -235,7 +237,7 @@ if(isset($konsoli) && ($valmistaja==='Valitse') && ($malli==='Valitse') && ($tyy
     echo "<td>".$row['konsolityyppi']."</td>";
     echo "</tr>";
     }
-    echo "</table><p>";
+    echo "</table>";
     return $result;
 }
 
