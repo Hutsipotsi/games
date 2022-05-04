@@ -186,14 +186,14 @@ function searchByName($pnimi)
     echo '<div class="table"><table class=gridtable>
     <tr>
     <th>Pelin nimi</th>
-    <th>tyylilaji</th>
+    <th>Tyylilaji</th>
     <th>Ikäsuositus</th>
     <th>Konsoli</th>
     <th></th>
     </tr>';
     foreach ($pelit as $row) {
         echo '<tr><td>' . $row["nimi"] . '</td>';
-        echo '<td>' . $row["genret"] . '</td>';
+        echo '<td>' . str_replace(',', ' / ', $row["genret"]) . '</td>';
         echo '<td>' . $row["ikasuositus"] . '</td>';
         echo '<td>' . $row["malli"] . '</td>';
         echo '<td><button type="submit" name="edit" value="' . $row['id'] . '" ' . 'class="btn btn-primary" >Päivitä</button></td>';
