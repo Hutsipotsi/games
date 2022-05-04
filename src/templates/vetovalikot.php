@@ -7,7 +7,7 @@ function createGenreDropdown($tyylilajit)
 
     $genres = getGenres();
 
-    echo '<label for="tyylilajit" class="col-sm-1 col-form-label">Tyylilajit: </label>';
+    echo '<label for="tyylilajit" id="tyyli" class="col-sm-1 col-form-label">Tyylilajit:  </label>';
     echo '<select name="tyylilajit[]" id="tyylilajit" class="selectpicker" multiple title="Valitse...">';
     foreach ($genres as $genre) {
         echo '<option value="' . $genre["id"];

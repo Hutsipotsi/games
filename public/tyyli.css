@@ -55,7 +55,6 @@ table.gridtable td {
 
 div.container {
     margin-top: 30px;
-    /*background-color: #cce5ff;*/
 }
 
 div.drop {
@@ -129,4 +128,16 @@ div.hae_nappi {
 
 #tlabel {
     margin-right: 22px;
+}
+
+#tyyli {
+    margin-right: 3px;
+}
+
+#konsolitunniste {
+    margin-left: 5px;
+}
+
+#peli_id {
+    margin-left: 2px;
 }
