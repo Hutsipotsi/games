@@ -186,7 +186,7 @@ function searchByName($pnimi)
     echo '<div class="table"><table class=gridtable>
     <tr>
     <th>Pelin nimi</th>
-    <th>tyylilaji</th>
+    <th>Tyylilaji</th>
     <th>Ikäsuositus</th>
     <th>Konsoli</th>
     <th></th>
