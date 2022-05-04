@@ -8,7 +8,16 @@ function getPelitNimi ($nimihaku) {
             try {
                 $pdo->beginTransaction();
 
-                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND nimi LIKE '%$nimihaku%';";
+                $sql = "SELECT peli.id, peli.nimi, peli.ikasuositus, konsolitunniste.malli, group_concat(genre.tyylilaji) as tyylilaji
+                FROM peli
+                INNER JOIN konsolitunniste
+                ON peli.konsolitunniste = konsolitunniste.id
+                INNER JOIN yhdistelmagenre
+                ON peli.id = yhdistelmagenre.peli_id
+                INNER JOIN genre
+                ON yhdistelmagenre.genre_id = genre.id
+                WHERE peli.nimi LIKE '%$nimihaku%'
+                GROUP BY peli.id";
                 
                 $statement = $pdo->prepare($sql);
                 $statement->execute();
@@ -29,7 +38,16 @@ function getPelitV($valmistaja) {
     
     try {
         $pdo->beginTransaction();
-        $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND valmistaja = '$valmistaja'";
+        $sql = "SELECT peli.id, peli.nimi, peli.ikasuositus, konsolitunniste.malli, group_concat(genre.tyylilaji) as tyylilaji
+        FROM peli
+        INNER JOIN konsolitunniste
+        ON peli.konsolitunniste = konsolitunniste.id
+        INNER JOIN yhdistelmagenre
+        ON peli.id = yhdistelmagenre.peli_id
+        INNER JOIN genre
+        ON yhdistelmagenre.genre_id = genre.id
+        WHERE valmistaja = '$valmistaja'
+        GROUP BY peli.id";
         
         $statement = $pdo->prepare($sql);
         $statement->execute();
@@ -50,8 +68,16 @@ function getPelitV($valmistaja) {
 
         try {
             $pdo->beginTransaction();
-
-            $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND malli = '$malli'";
+            $sql = "SELECT peli.id, peli.nimi, peli.ikasuositus, konsolitunniste.malli, group_concat(genre.tyylilaji) as tyylilaji
+            FROM peli
+            INNER JOIN konsolitunniste
+            ON peli.konsolitunniste = konsolitunniste.id
+            INNER JOIN yhdistelmagenre
+            ON peli.id = yhdistelmagenre.peli_id
+            INNER JOIN genre
+            ON yhdistelmagenre.genre_id = genre.id
+            WHERE malli = '$malli'
+            GROUP BY peli.id";
             
             $statement = $pdo->prepare($sql);
             $statement->execute();
@@ -73,7 +99,16 @@ function getPelitV($valmistaja) {
             try {
                 $pdo->beginTransaction();
 
-                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND tyylilaji = '$tyylilaji'";
+                $sql = "SELECT peli.id, peli.nimi, peli.ikasuositus, konsolitunniste.malli, group_concat(genre.tyylilaji) as tyylilaji
+                FROM peli
+                INNER JOIN konsolitunniste
+                ON peli.konsolitunniste = konsolitunniste.id
+                INNER JOIN yhdistelmagenre
+                ON peli.id = yhdistelmagenre.peli_id
+                INNER JOIN genre
+                ON yhdistelmagenre.genre_id = genre.id
+                GROUP BY peli.id
+                HAVING find_in_set('$tyylilaji', tyylilaji);";
                 
                 $statement = $pdo->prepare($sql);
                 $statement->execute();
@@ -94,8 +129,19 @@ function getPelitVt($valmistaja, $tyylilaji) {
 
             try {
                 $pdo->beginTransaction();
+                $sql="SELECT peli.id, peli.nimi, peli.ikasuositus, konsolitunniste.malli, group_concat(genre.tyylilaji) as tyylilaji
+                FROM peli
+                INNER JOIN konsolitunniste
+                ON peli.konsolitunniste = konsolitunniste.id
+                INNER JOIN yhdistelmagenre
+                ON peli.id = yhdistelmagenre.peli_id
+                INNER JOIN genre
+                ON yhdistelmagenre.genre_id = genre.id
+                WHERE konsolitunniste.valmistaja = '$valmistaja'
+                GROUP BY peli.id
+                HAVING find_in_set('$tyylilaji', tyylilaji)";
 
-                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND valmistaja = '$valmistaja' AND tyylilaji = '$tyylilaji'";
+               
             
             $statement = $pdo->prepare($sql);
             $statement->execute();
@@ -117,7 +163,17 @@ function getPelitMt($malli, $tyylilaji) {
             try {
                 $pdo->beginTransaction();
 
-                $sql = "SELECT DISTINCT nimi, tyylilaji, ikasuositus, malli FROM peli, yhdistelmagenre, genre, konsolitunniste WHERE peli.id = yhdistelmagenre.peli_id AND yhdistelmagenre.genre_id = genre.id AND peli.konsolitunniste = konsolitunniste.id AND malli = '$malli' AND tyylilaji = '$tyylilaji'";
+                $sql = "SELECT peli.id, peli.nimi, peli.ikasuositus, konsolitunniste.malli, group_concat(genre.tyylilaji) as tyylilaji
+                FROM peli
+                INNER JOIN konsolitunniste
+                ON peli.konsolitunniste = konsolitunniste.id
+                INNER JOIN yhdistelmagenre
+                ON peli.id = yhdistelmagenre.peli_id
+                INNER JOIN genre
+                ON yhdistelmagenre.genre_id = genre.id
+                WHERE konsolitunniste.malli = '$malli'
+                GROUP BY peli.id
+                HAVING find_in_set('$tyylilaji', tyylilaji);";
             
                 $statement = $pdo->prepare($sql);
                 $statement->execute();

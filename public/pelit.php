@@ -136,7 +136,7 @@ if(isset($nimihaku) && ($valmistaja==='Valitse') && ($malli==='Valitse') && ($ty
     //Luodaan yksi taulukon rivi tietokannan rivistä
         foreach($result as $row){ 
             echo "<tbody><tr><td>" . $row["nimi"] . "</td>";
-            echo "<td>" . $row["tyylilaji"] . "</td>";
+            echo "<td>" . str_replace(",", " / ", $row["tyylilaji"]) . "</td>";
             echo "<td>" . $row["ikasuositus"] . "</td>";
             echo "<td>" . $row["malli"] . "</td></tr></tbody>";
         }
@@ -153,7 +153,7 @@ if (isset($valmistaja) && ($tyylilaji==='Valitse') && ($konsoli==='Valitse') && 
     //Luodaan yksi taulukon rivi tietokannan rivistä
     foreach ($result as $row) {
         echo "<tr><td>" . $row["nimi"] . "</td>";
-        echo "<td>" . $row["tyylilaji"] . "</td>";
+        echo "<td>" . str_replace(",", " / ", $row["tyylilaji"]) . "</td>";
         echo "<td>" . $row["ikasuositus"] . "</td>";
         echo "<td>" . $row["malli"] . "</td></tr>";
     }
@@ -169,7 +169,7 @@ echo '<div class="table"><table class=gridtable><tr><th>Pelin nimi</th><th>tyyli
 //Luodaan yksi taulukon rivi tietokannan rivistä
 foreach ($result as $row) {
     echo "<tr><td>" . $row["nimi"] . "</td>";
-    echo "<td>" . $row["tyylilaji"] . "</td>";
+    echo "<td>" . str_replace(",", " / ", $row["tyylilaji"]) . "</td>";
     echo "<td>" . $row["ikasuositus"] . "</td>";
     echo "<td>" . $row["malli"] . "</td></tr>";
 }
@@ -185,7 +185,7 @@ if (isset($tyylilaji) && ($malli==='Valitse') && ($konsoli==='Valitse') && ($val
     //Luodaan yksi taulukon rivi tietokannan rivistä
     foreach ($result as $row) {
         echo "<tr><td>" . $row["nimi"] . "</td>";
-        echo "<td>" . $row["tyylilaji"] . "</td>";
+        echo "<td>" . str_replace(",", " / ", $row["tyylilaji"]) . "</td>";
         echo "<td>" . $row["ikasuositus"] . "</td>";
         echo "<td>" . $row["malli"] . "</td></tr>";
     }
@@ -201,7 +201,7 @@ if (isset($valmistaja) && (isset($tyylilaji)) && ($konsoli==='Valitse') && ($mal
     //Luodaan yksi taulukon rivi tietokannan rivistä
     foreach ($result as $row) {
         echo "<tr><td>" . $row["nimi"] . "</td>";
-        echo "<td>" . $row["tyylilaji"] . "</td>";
+        echo "<td>" . str_replace(",", " / ", $row["tyylilaji"]) . "</td>";
         echo "<td>" . $row["ikasuositus"] . "</td>";
         echo "<td>" . $row["malli"] . "</td></tr>";
     }
@@ -217,7 +217,7 @@ if (isset($malli) && (isset($tyylilaji)) && ($konsoli==='Valitse') && ($valmista
     //Luodaan yksi taulukon rivi tietokannan rivistä
     foreach ($result as $row) {
         echo "<tr><td>" . $row["nimi"] . "</td>";
-        echo "<td>" . $row["tyylilaji"] . "</td>";
+        echo "<td>" . str_replace(",", " / ", $row["tyylilaji"]) . "</td>";
         echo "<td>" . $row["ikasuositus"] . "</td>";
         echo "<td>" . $row["malli"] . "</td></tr>";
     }
