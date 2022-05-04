@@ -11,8 +11,6 @@
  * @param int $konsolitunniste the gaming console the game is for
  */
 
-echo '<div class=container>';
-
 function addGame($pelin_nimi, $tyylilajit, $ikasuositus, $konsolitunniste)
 {
     require_once MODULES_DIR . 'db.php';
@@ -320,5 +318,5 @@ function fetchConsoleID($pelin_id)
         throw $e;
     }
 }
-echo '</div>';
+
 // EOF
