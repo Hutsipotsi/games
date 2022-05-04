@@ -14,7 +14,7 @@ $konsoli = charFix(filter_input(INPUT_POST, "konsoli", FILTER_SANITIZE_FULL_SPEC
 
 echo '<div class=container><form action="pelit.php" method="post">';
 
-echo '<h2 id="oetu">Pelit ja konsolit</h2>';
+echo '<h3 id="oetu">Pelit ja konsolit</h3>';
 
 $pdo = getPdoConnection();
 
@@ -243,4 +243,5 @@ if(isset($konsoli) && ($valmistaja==='Valitse') && ($malli==='Valitse') && ($tyy
 }
 
 echo '</div>';
+include TEMPLATES_DIR . 'footer.php';
 ?>

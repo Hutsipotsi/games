@@ -16,9 +16,9 @@ include MODULES_DIR . 'lisaakayttaja.php';
 
 <h4>Lisää käyttäjä</h4>
 
-<form method="post" id="käyttäjä">
+<form method="post" id="kayttaja">
 <div class="form-group row">
-  <label for="tunnus" class="col-sm-2 col-form-label">Käyttäjätunnus</label>
+  <label for="tunnus" class="col-sm-2 col-form-label">Käyttäjätunnus:</label>
   <div class="col-sm-2">
     <div class="input-group">
       <div class="input-group-prepend">
@@ -29,19 +29,19 @@ include MODULES_DIR . 'lisaakayttaja.php';
   </div>
 </div>
 <div class="form-group row">
-  <label for="email" class="col-sm-2 col-form-label">Sähköposti</label>
+  <label for="email" class="col-sm-2 col-form-label">Sähköposti:</label>
   <div class="col-sm-4">
     <input type="email" name="email" class="form-control" id="email" placeholder="Sähköposti">
   </div>
 </div>
 <div class="form-group row">
-  <label for="password" class="col-sm-2 col-form-label">Salasana</label>
+  <label for="password" class="col-sm-2 col-form-label">Salasana:</label>
   <div class="col-sm-4">
     <input type="password" name="password" class="form-control" id="password" placeholder="Salasana">
   </div>
 </div>
 <div class="form-group row">
-  <label for="oikat" class="col-sm-2 col-form-label">Käyttöoikeustaso</label>
+  <label for="oikat" class="col-sm-2 col-form-label">Käyttöoikeustaso:</label>
     <div class="col-sm-2 col-form-label">
       <select for="oikat" class="custom-select" name="oikat" id="oikat">
         <option selected>Valitse oikeustaso</option>
@@ -53,8 +53,8 @@ include MODULES_DIR . 'lisaakayttaja.php';
   </div>
   <div class="form-group row">
   <div class="col-sm-2">
-    <button type="submit" name="tallenna" value="tallenna" class="btn btn-primary">Tallenna</button>
-    <button type="poista" name="poista" value="poista" class="btn btn-primary">Poista</button>
+    <button type="submit" name="tallenna" id="lktallenna" value="tallenna" class="btn btn-primary">Tallenna</button>
+    <button type="poista" name="poista" id="lkpoista" value="poista" class="btn btn-primary">Poista</button>
   </div>
 </div>
 </form>

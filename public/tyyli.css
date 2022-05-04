@@ -1,28 +1,6 @@
-:root {
-    background-color: #cce5ff;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-body {
-    background-color: #cce5ff;
-}
-
-#header {
-    width: 97.5vw;
-    height: 60px;
-    text-align: center;
-    padding: 10px;
-}
-/*
-#kasikonsolit {
-    margin: 10px;
-}*/
-
-#navigointi {
-    float: left;
-    width: 10%;
-    height: 75vh; /* only for demonstration, should be removed */
-    padding: 20px;
+#bodyback {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #cce5ff !important;
 }
 
 #nav {
@@ -36,16 +14,12 @@ body {
     padding-right: 40px;
 }
 
-#loginpa {
-    margin-top: 30px;
-}
-
-#kirjautumis_sivu, #käyttäjä, #peli, h4 {
-    margin: 10px;
+#kirjautumis_sivu, #kayttaja, #peli, h4 {
+    margin: 30px;
 }
 
 #oetu {
-    text-align: center;
+    margin-left: 30px;
     margin-bottom: 20px;
 }
 
@@ -81,11 +55,11 @@ table.gridtable td {
 
 div.container {
     margin-top: 30px;
-    background-color: #cce5ff;
+    /*background-color: #cce5ff;*/
 }
 
 div.drop {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 30px;
     display: block; 
 }
@@ -108,18 +82,33 @@ div.hae_nappi {
 
 #save_nappi {
     margin-left: 110px;
-    margin-top: 19px;
+    margin-top: 10px;
 }
 
 #peli_nappi {
     margin-left: 190px;
-    margin-top: -70px;
+    margin-top: -65px;
 }
 
 #clear_nappi {
-    margin-left: 13px;
+    margin-left: 11px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+#lktallenna{
+    margin-left: 220px;
+    margin-top: 10px;
+}
+
+#lkpoista {
+    margin-inline-start: 320px;
+    margin-top: -62px;
+}
+
+#kirjaudu {
+    margin-left: 95px;
+    margin-top: 10px;
 }
 
 #klabel {
