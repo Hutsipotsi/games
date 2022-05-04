@@ -20,7 +20,6 @@ if(isset($_POST['tyylilajit'])) {
 $ikasuositus = filter_input(INPUT_POST, "ikasuositus", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $konsolitunniste = filter_input(INPUT_POST, "konsolitunniste");
 
-echo '<div class=container>';
 //To make konsoli-dropdown show correct default selected value when there's no game to be updated.
 if ($konsolitunniste == -1) $konsolitunniste = null;
 
@@ -40,6 +39,7 @@ if (isset($_POST['save'])) {
     echo '<div class="alert alert-success" role="alert">Peli ' . $pelin_nimi . ' poistettu tietokannasta.</div>';
 } else if (isset($_POST['clear'])) header('Location: lisaapeli.php');
 
+echo '<div class=container>';
 if (!isset($pelin_id)) echo '<h4>Lisää peli</h4>';
 else echo '<h4>Päivitä peli</h4>';
 
