@@ -134,16 +134,15 @@ if(isset($nimihaku) && ($valmistaja==='Valitse') && ($malli==='Valitse') && ($ty
 
     echo '<div class="table"><table class=gridtable><thead><tr><th>Pelin nimi</th><th>tyylilaji</th><th>Ikäsuositus</th><th>Konsoli</th></tr></thead>';
     //Luodaan yksi taulukon rivi tietokannan rivistä
-        foreach($result as $row){ 
-            echo "<tbody><tr><td>" . $row["nimi"] . "</td>";
-            echo "<td>" . str_replace(",", " / ", $row["tyylilaji"]) . "</td>";
-            echo "<td>" . $row["ikasuositus"] . "</td>";
-            echo "<td>" . $row["malli"] . "</td></tr></tbody>";
-        }
-        echo "</table></div>";
-        return $result;
+    foreach($result as $row){ 
+        echo "<tbody><tr><td>" . $row["nimi"] . "</td>";
+        echo "<td>" . str_replace(",", " / ", $row["tyylilaji"]) . "</td>";
+        echo "<td>" . $row["ikasuositus"] . "</td>";
+        echo "<td>" . $row["malli"] . "</td></tr></tbody>";
     }
-
+    echo "</table></div>";
+    return $result;
+}
 
 if (isset($valmistaja) && ($tyylilaji==='Valitse') && ($konsoli==='Valitse') && ($malli==='Valitse')) {
 
