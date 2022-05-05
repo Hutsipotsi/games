@@ -172,7 +172,8 @@ function searchByName($pnimi)
             INNER JOIN genre
             ON yhdistelmagenre.genre_id = genre.id
             WHERE peli.nimi LIKE '%$pnimi%'
-            GROUP BY peli.id";
+            GROUP BY peli.id
+            ORDER BY konsolitunniste.malli ASC, peli.nimi ASC";
 
         $results = $pdo->query($sql);
         $pelit = $results->fetchAll();
