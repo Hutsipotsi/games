@@ -17,7 +17,8 @@ function getPelitNimi ($nimihaku) {
                 INNER JOIN genre
                 ON yhdistelmagenre.genre_id = genre.id
                 WHERE peli.nimi LIKE '%$nimihaku%'
-                GROUP BY peli.id";
+                GROUP BY peli.id
+                ORDER BY konsolitunniste.malli ASC, peli.nimi ASC";
                 
                 $statement = $pdo->prepare($sql);
                 $statement->execute();
@@ -47,7 +48,8 @@ function getPelitV($valmistaja) {
         INNER JOIN genre
         ON yhdistelmagenre.genre_id = genre.id
         WHERE valmistaja = '$valmistaja'
-        GROUP BY peli.id";
+        GROUP BY peli.id
+        ORDER BY konsolitunniste.malli ASC, peli.nimi ASC";
         
         $statement = $pdo->prepare($sql);
         $statement->execute();
@@ -77,7 +79,8 @@ function getPelitV($valmistaja) {
             INNER JOIN genre
             ON yhdistelmagenre.genre_id = genre.id
             WHERE malli = '$malli'
-            GROUP BY peli.id";
+            GROUP BY peli.id
+            ORDER BY konsolitunniste.malli ASC, peli.nimi ASC";
             
             $statement = $pdo->prepare($sql);
             $statement->execute();
@@ -108,7 +111,8 @@ function getPelitV($valmistaja) {
                 INNER JOIN genre
                 ON yhdistelmagenre.genre_id = genre.id
                 GROUP BY peli.id
-                HAVING find_in_set('$tyylilaji', tyylilaji);";
+                HAVING find_in_set('$tyylilaji', tyylilaji)
+                ORDER BY konsolitunniste.malli ASC, peli.nimi ASC";
                 
                 $statement = $pdo->prepare($sql);
                 $statement->execute();
@@ -139,8 +143,8 @@ function getPelitVt($valmistaja, $tyylilaji) {
                 ON yhdistelmagenre.genre_id = genre.id
                 WHERE konsolitunniste.valmistaja = '$valmistaja'
                 GROUP BY peli.id
-                HAVING find_in_set('$tyylilaji', tyylilaji)";
-
+                HAVING find_in_set('$tyylilaji', tyylilaji)
+                ORDER BY konsolitunniste.malli ASC, peli.nimi ASC";
                
             
             $statement = $pdo->prepare($sql);
@@ -173,7 +177,8 @@ function getPelitMt($malli, $tyylilaji) {
                 ON yhdistelmagenre.genre_id = genre.id
                 WHERE konsolitunniste.malli = '$malli'
                 GROUP BY peli.id
-                HAVING find_in_set('$tyylilaji', tyylilaji);";
+                HAVING find_in_set('$tyylilaji', tyylilaji)
+                ORDER BY konsolitunniste.malli ASC, peli.nimi ASC";
             
                 $statement = $pdo->prepare($sql);
                 $statement->execute();
@@ -197,13 +202,13 @@ function getPelitMt($malli, $tyylilaji) {
                     $pdo->beginTransaction();
             
                 if($konsoli==='Kaikki') {
-                    $sql = "SELECT valmistaja, malli, kpl, vari, konsolityyppi FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste";
+                    $sql = "SELECT valmistaja, malli, kpl, vari, konsolityyppi FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste ORDER BY valmistaja, malli";
                 }
                 elseif(($konsoli==='Pelikonsoli') || ($konsoli==='Käsikonsoli')) {
-                    $sql = "SELECT valmistaja, malli, kpl, vari, konsolityyppi FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste AND konsolityyppi = '$konsoli'";
+                    $sql = "SELECT valmistaja, malli, kpl, vari, konsolityyppi FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste AND konsolityyppi = '$konsoli'ORDER BY valmistaja, malli";
                 }
                 else {
-                    $sql = "SELECT valmistaja, malli, kpl, vari, konsolityyppi FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste AND valmistaja='$konsoli'";   
+                    $sql = "SELECT valmistaja, malli, kpl, vari, konsolityyppi FROM konsolitunniste, konsoli WHERE konsolitunniste.id = konsoli.konsolitunniste AND valmistaja='$konsoli' ORDER BY malli";   
                 }
             
                     $statement = $pdo->prepare($sql);
